@@ -7,13 +7,13 @@ import '../../../../core/design/app_image.dart';
 import '../../../../core/design/app_input.dart';
 import '../../../../core/logic/cashe_helper.dart';
 import '../../../../core/logic/helper_methods.dart';
-import '../../../../features/categories/cubit.dart';
+import '../../../../features/categories/bloc.dart';
 import '../../../../features/categories/model.dart';
 import '../../../../features/categories/states.dart';
-import '../../../../features/products/cubit.dart';
+import '../../../../features/products/bloc.dart';
 import '../../../../features/products/model.dart';
 import '../../../../features/products/states.dart';
-import '../../../../features/sliders/cubit.dart';
+import '../../../../features/sliders/bloc.dart';
 import '../../../../features/sliders/states.dart';
 import '../../../auth/login/view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
                 icon: "assets/icons/svg/cart_icon.svg",
                 hintText: "ابحث عن ماتريد؟",
               ),
-              BlocBuilder<SliderCubit, SliderStates>(
+              BlocBuilder<SliderBloc, SliderStates>(
                 builder: (context, state) {
                   if (state is SliderLoadingState) {
                     return Center(
@@ -99,7 +99,7 @@ class _MainPageState extends State<MainPage> {
                   }
                 },
               ),
-              BlocBuilder<CategoriesCubit,CategoriesStates>(
+              BlocBuilder<CategoriesBloc,CategoriesStates>(
                 builder: (context, state) {
                   if (state is CategoriesLoadingState) {
                     return Center(
@@ -145,7 +145,7 @@ class _MainPageState extends State<MainPage> {
                     return Text("Failed");
                   }
               },),
-              BlocBuilder<ProductCubit,ProductsStates>(
+              BlocBuilder<ProductBloc,ProductsStates>(
                   builder: (context, state) {
                     if (state is ProductsLoadingState) {
                       return Center(

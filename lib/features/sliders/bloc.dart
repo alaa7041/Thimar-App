@@ -1,16 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:thimar/features/sliders/events.dart';
 import '../../core/logic/dio_helper.dart';
 import 'model.dart';
 import 'states.dart';
 
 
-class SliderCubit extends Cubit<SliderStates> {
-  SliderCubit() : super(SliderStates());
+class SliderBloc extends Bloc<SlidersEvents,SliderStates> {
+  SliderBloc(SliderStates sliderStates) : super(SliderStates()){
+    on<SlidersEvent> (_getSliderDataImages);
+  }
 
 
 
-  Future<void> getSliderDataImages() async {
+  Future<void> _getSliderDataImages(SlidersEvent event,Emitter<SliderStates> emit)
+  async {
     emit(SliderLoadingState());
     final response = await DioHelper().getData("sliders");
     print(response.response?.data);

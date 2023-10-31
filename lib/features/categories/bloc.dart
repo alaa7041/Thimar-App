@@ -1,15 +1,17 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:thimar/features/categories/events.dart';
 import 'package:thimar/features/categories/states.dart';
-
 import '../../core/logic/dio_helper.dart';
 import 'model.dart';
 
 
-class CategoriesCubit extends Cubit<CategoriesStates>{
-  CategoriesCubit():super(CategoriesStates());
+class CategoriesBloc extends Bloc<CategoriesEvents,CategoriesStates>{
+  CategoriesBloc(CategoriesStates categoriesStates):super(CategoriesStates()){
+    on<CategoriesEvent> (_getData);
+  }
 
-  Future<void> getData()  async {
+  Future<void> _getData(CategoriesEvent event,Emitter<CategoriesStates> emit)  
+  async {
     emit(CategoriesLoadingState());
     final response = await DioHelper().getData("categories");
 

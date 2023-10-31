@@ -1,12 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:thimar/features/products/events.dart';
 import '../../core/logic/dio_helper.dart';
 import 'model.dart';
 import 'states.dart';
 
 
 
-class ProductCubit extends Cubit<ProductsStates>{
-  ProductCubit():super(ProductsStates());
+class ProductBloc extends Bloc<ProductEvents,ProductsStates>{
+  ProductBloc():super(ProductsStates());
 
   Future<void> getData()async{
     emit(ProductsLoadingState());

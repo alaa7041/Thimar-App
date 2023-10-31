@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:thimar/features/categories/events.dart';
+import 'package:thimar/features/categories/states.dart';
+import 'package:thimar/features/sliders/events.dart';
+import 'package:thimar/features/sliders/states.dart';
 import 'package:thimar/views/auth/forget_password/bloc.dart';
 import 'package:thimar/views/auth/splash_screen/view.dart';
 import 'core/logic/cashe_helper.dart';
 import 'core/logic/helper_methods.dart';
-import 'features/categories/cubit.dart';
+import 'features/categories/bloc.dart';
 import 'features/get_cities/bloc.dart';
 import 'features/get_cities/events.dart';
 import 'features/get_cities/states.dart';
-import 'features/products/cubit.dart';
-import 'features/sliders/cubit.dart';
+import 'features/products/bloc.dart';
+import 'features/sliders/bloc.dart';
 import 'views/auth/confirm_code/bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,13 +37,14 @@ class StartView extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => SliderCubit()..getSliderDataImages(),
+            create: (context) => SliderBloc(SliderStates())..add(SlidersEvents()),
           ),
           BlocProvider(
-            create: (context) => CategoriesCubit()..getData(),
+            create: (context) => CategoriesBloc(CategoriesStates())..add
+    (CategoriesEvents()),
           ),
           BlocProvider(
-            create: (context) => ProductCubit()..getData(),
+            create: (context) => ProductBloc()..getData(),
           ),
           BlocProvider(
             create: (context) =>
