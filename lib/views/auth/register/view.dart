@@ -1,0 +1,234 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/design/app_button.dart';
+import '../../../core/design/app_input.dart';
+import '../../../core/logic/helper_methods.dart';
+import '../../sheets/cities.dart';
+import '../login/view.dart';
+import 'bloc.dart';
+import 'states.dart';
+
+class RegisterView extends StatefulWidget {
+  const RegisterView({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+class _RegisterViewState extends State<RegisterView> {
+  @override
+  Widget build(BuildContext context) {
+    return  Builder(
+      builder: (context) {
+        RegisterBloc bloc = BlocProvider.of(context);
+        return Scaffold(
+          body: SafeArea(
+            child: Stack(
+              children: [
+                Image(
+                  image: AssetImage("assets/images/splash_bg.png"),
+                  fit: BoxFit.fill,
+                  height: double.infinity,
+                  width: double.infinity,
+                ),
+                Form(
+                  key: bloc.formKey,
+                  child: ListView(
+                    padding: EdgeInsets.all(20),
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional.topCenter,
+                        child: Image(
+                          image: AssetImage("assets/images/logo.png"),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 21,
+                      ),
+                      Text(
+                        "مرحبا بك مرة أخرى",
+                        style: TextStyle(
+                          color: Color(0xff4C8613),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "يمكنك تسجيل حساب جديد الأن",
+                        style: TextStyle(
+                          color: Color(0xff4C8613),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      AppInput(
+                        controller: bloc.fullNameController,
+                        paddingTop: 22,
+                        hintText: "اسم المستخدم",
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "اسم المستخدم مطلوب";
+                          }
+                          return null;
+                        },
+                        icon: "assets/icons/username.png",
+                        paddingBottom: 16,
+                      ),
+                      AppInput(
+                        controller: bloc.phoneController,
+                        hintText: "رقم الجوال",
+                        icon: "assets/images/phone_icon.png",
+                        isPhone: true,
+                        paddingBottom: 16,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return " رقم الهاتف مطلوب";
+                          } else if (value.length < 9) {
+                            return " يجب ان يكون رقم الهاتف 9 ارقام";
+                          }
+                          return null;
+                        },
+                      ),
+                      StatefulBuilder(
+                        builder: (context, setState) =>
+                            GestureDetector(
+                              onTap: () async {
+                                var result = await showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => CitiesSheet(),
+                                );
+                                if (result != null) {
+                                  bloc.selectedCity = result;
+                                  setState(() {});
+                                  print("the result is ${bloc.selectedCity!
+                                      .name}");
+                                }
+                              },
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: AbsorbPointer(
+                                      absorbing: true,
+                                      child: AppInput(
+                                        isText: TextInputType.none,
+                                        hintText: bloc.selectedCity?.name ??
+                                            "المدينة",
+                                        icon: "assets/icons/city.png",
+                                        paddingBottom: 0,
+                                        validator: (value) {
+                                          if (bloc.selectedCity == null) {
+                                            return "يجب اختيار المدينه";
+                                          }
+                                          return null;
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  if (bloc.selectedCity != null)
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.clear,
+                                        size: 24,
+                                      ),
+                                      onPressed: () {
+                                        bloc.selectedCity = null;
+                                        setState(() {});
+                                      },
+                                    ),
+                                ],
+                              ),
+                            ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      AppInput(
+                        controller: bloc.passwordController,
+                        hintText: "كلمة المرور",
+                        icon: "assets/icons/look1.png",
+                        isPassword: true,
+                        paddingBottom: 16,
+                        validator: (value) {
+                          if (value
+                              .toString()
+                              .isEmpty) {
+                            return "كلمة المرور مطلوبه";
+                          } else if (value
+                              .toString()
+                              .length < 6) {
+                            return "كلمة المرور ضعيفه";
+                          }
+                          return null;
+                        },
+                      ),
+                      AppInput(
+                        controller: bloc.confirmPasswordController,
+                        hintText: "كلمة المرور",
+                        icon: "assets/icons/look1.png",
+                        isPassword: true,
+                        paddingBottom: 24,
+                        validator: (value) {
+                          if (value
+                              .toString()
+                              .isEmpty) {
+                            return "كلمة المرور مطلوبه";
+                          } else if (value != bloc.passwordController.text) {
+                            return "كلمتا المرور غير متطابقتين";
+                          }
+                          return null;
+                        },
+                      ),
+                      BlocBuilder(
+                        bloc: bloc, builder: (context, state) => AppButton(
+                            text: "تسجيل ",
+                            isLoading:state is RegisterLoadingStates,
+                            onPress: () {
+                              bloc.register();
+                            },
+                          ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            " لديك حساب بالفعل ؟",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Color(0xff4C8613),
+                              fontWeight: FontWeight.w900,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              navigateTo(LoginView());
+                            },
+                            child: Text(
+                              " تسجيل الدخول",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color(0xff4C8613),
+                                fontWeight: FontWeight.w900,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
