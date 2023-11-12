@@ -6,11 +6,11 @@ import 'model.dart';
 
 
 class CategoriesBloc extends Bloc<CategoriesEvents,CategoriesStates>{
-  CategoriesBloc(CategoriesStates categoriesStates):super(CategoriesStates()){
-    on<CategoriesEvent> (_getData);
+  CategoriesBloc():super(CategoriesStates()){
+    on<GetCategoriesEvent> (_getData);
   }
 
-  Future<void> _getData(CategoriesEvent event,Emitter<CategoriesStates> emit)  
+  Future<void> _getData(GetCategoriesEvent event,Emitter<CategoriesStates> emit)
   async {
     emit(CategoriesLoadingState());
     final response = await DioHelper().getData("categories");
@@ -18,6 +18,9 @@ class CategoriesBloc extends Bloc<CategoriesEvents,CategoriesStates>{
     if(response.isSuccess){
       final model = CategoriesData.fromJson(response.response!.data);
       emit(CategoriesSuccessState(list: model.list));
-  }
+  }else
+    {
+      emit(CategoriesFailedState(msg: "msg"));
+    }
 }
 }

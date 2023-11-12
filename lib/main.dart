@@ -5,7 +5,13 @@ import 'package:thimar/features/categories/states.dart';
 import 'package:thimar/features/sliders/events.dart';
 import 'package:thimar/features/sliders/states.dart';
 import 'package:thimar/views/auth/forget_password/bloc.dart';
+import 'package:thimar/views/auth/login/view.dart';
 import 'package:thimar/views/auth/splash_screen/view.dart';
+import 'package:thimar/views/counter.dart';
+import 'package:thimar/views/home/pages/cart/view.dart';
+import 'package:thimar/views/home/pages/end_order/view.dart';
+import 'package:thimar/views/home/pages/main/view.dart';
+import 'package:thimar/views/home/view.dart';
 import 'core/logic/cashe_helper.dart';
 import 'core/logic/helper_methods.dart';
 import 'features/categories/bloc.dart';
@@ -25,7 +31,7 @@ import 'views/auth/reset_password/bloc.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CasheHelper.init();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: getMaterialColor(),
   ));
   runApp(StartView());
@@ -37,11 +43,10 @@ class StartView extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => SliderBloc(SliderStates())..add(SlidersEvents()),
+            create: (context) => SliderBloc()..add(GetSliderDataEvent()),
           ),
           BlocProvider(
-            create: (context) => CategoriesBloc(CategoriesStates())..add
-    (CategoriesEvents()),
+            create: (context) => CategoriesBloc()..add(GetCategoriesEvent()),
           ),
           BlocProvider(
             create: (context) => ProductBloc()..getData(),
@@ -123,7 +128,7 @@ class StartView extends StatelessWidget {
             title: "Thimar",
             home: child,
           ),
-          child: SplashView(),
+          child: EndOrderView(),
         ));
   }
 }

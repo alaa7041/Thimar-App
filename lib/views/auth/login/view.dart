@@ -5,7 +5,7 @@ import '../../../core/logic/helper_methods.dart';
 import '../forget_password/view.dart';
 import '../register/view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bloc.dart';
 import 'states.dart';
 
@@ -40,7 +40,7 @@ class _LoginViewState extends State<LoginView> {
                   Form(
                     key: bloc.formKey,
                     child: ListView(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(20.w),
                       children: [
                         Align(
                           alignment: AlignmentDirectional.topCenter,
@@ -49,13 +49,13 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         SizedBox(
-                          height: 24,
+                          height: 24.h,
                         ),
                         Text(
                           "مرحبا بك مرة أخرى",
                           style: TextStyle(
                             color: Color(0xff4C8613),
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -66,17 +66,17 @@ class _LoginViewState extends State<LoginView> {
                           "يمكنك تسجيل الدخول الأن",
                           style: TextStyle(
                             color: Color(0xff4C8613),
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         //phone
                         AppInput(
-                          paddingTop: 28,
+                          paddingTop: 28.w,
                           hintText: "رقم الجوال",
                           icon: "assets/images/phone_icon.png",
                           isPhone: true,
-                          paddingBottom: 16,
+                          paddingBottom: 16.w,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return " رقم الهاتف مطلوب";
@@ -91,7 +91,7 @@ class _LoginViewState extends State<LoginView> {
                           hintText: "كلمة المرور",
                           icon: "assets/icons/look1.png",
                           isPassword: true,
-                          paddingBottom: 19,
+                          paddingBottom: 19.w,
                           validator: (value) {
                             if (value.toString().isEmpty) {
                               return "كلمة المرور مطلوبه";
@@ -107,13 +107,13 @@ class _LoginViewState extends State<LoginView> {
                         }, child: Text(
                           "نسيت كلمة المرور ؟",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             color: Color(0xff707070),
                           ),
                           textAlign: TextAlign.end,
                         ),),
                         SizedBox(
-                          height: 22,
+                          height: 22.h,
                         ),
                         //buttom
                         BlocBuilder(
@@ -127,7 +127,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         SizedBox(
-                          height: 45,
+                          height: 45.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -135,7 +135,7 @@ class _LoginViewState extends State<LoginView> {
                             Text(
                               "ليس لديك حساب ؟",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 color: Color(0xff4C8613),
                                 fontWeight: FontWeight.w900,
                               ),
@@ -148,7 +148,7 @@ class _LoginViewState extends State<LoginView> {
                               child: Text(
                                 " تسجيل الأن",
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 15.sp,
                                   color: Color(0xff4C8613),
                                   fontWeight: FontWeight.w900,
                                 ),

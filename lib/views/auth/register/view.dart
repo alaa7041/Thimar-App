@@ -7,6 +7,8 @@ import '../../sheets/cities.dart';
 import '../login/view.dart';
 import 'bloc.dart';
 import 'states.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -42,30 +44,30 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                       ),
                       SizedBox(
-                        height: 21,
+                        height: 21.h,
                       ),
                       Text(
                         "مرحبا بك مرة أخرى",
                         style: TextStyle(
                           color: Color(0xff4C8613),
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         "يمكنك تسجيل حساب جديد الأن",
                         style: TextStyle(
                           color: Color(0xff4C8613),
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       AppInput(
                         controller: bloc.fullNameController,
-                        paddingTop: 22,
+                        paddingTop: 22.w,
                         hintText: "اسم المستخدم",
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -74,14 +76,14 @@ class _RegisterViewState extends State<RegisterView> {
                           return null;
                         },
                         icon: "assets/icons/username.png",
-                        paddingBottom: 16,
+                        paddingBottom: 16.w,
                       ),
                       AppInput(
                         controller: bloc.phoneController,
                         hintText: "رقم الجوال",
                         icon: "assets/images/phone_icon.png",
                         isPhone: true,
-                        paddingBottom: 16,
+                        paddingBottom: 16.w,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return " رقم الهاتف مطلوب";
@@ -117,7 +119,7 @@ class _RegisterViewState extends State<RegisterView> {
                                         hintText: bloc.selectedCity?.name ??
                                             "المدينة",
                                         icon: "assets/icons/city.png",
-                                        paddingBottom: 0,
+                                        paddingBottom: 0.w,
                                         validator: (value) {
                                           if (bloc.selectedCity == null) {
                                             return "يجب اختيار المدينه";
@@ -131,7 +133,7 @@ class _RegisterViewState extends State<RegisterView> {
                                     IconButton(
                                       icon: Icon(
                                         Icons.clear,
-                                        size: 24,
+                                        size: 24.w,
                                       ),
                                       onPressed: () {
                                         bloc.selectedCity = null;
@@ -143,14 +145,14 @@ class _RegisterViewState extends State<RegisterView> {
                             ),
                       ),
                       SizedBox(
-                        height: 16,
+                        height: 16.h,
                       ),
                       AppInput(
                         controller: bloc.passwordController,
                         hintText: "كلمة المرور",
                         icon: "assets/icons/look1.png",
                         isPassword: true,
-                        paddingBottom: 16,
+                        paddingBottom: 16.w,
                         validator: (value) {
                           if (value
                               .toString()
@@ -169,7 +171,7 @@ class _RegisterViewState extends State<RegisterView> {
                         hintText: "كلمة المرور",
                         icon: "assets/icons/look1.png",
                         isPassword: true,
-                        paddingBottom: 24,
+                        paddingBottom: 24.w,
                         validator: (value) {
                           if (value
                               .toString()
@@ -191,7 +193,7 @@ class _RegisterViewState extends State<RegisterView> {
                           ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 30.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -199,7 +201,7 @@ class _RegisterViewState extends State<RegisterView> {
                           Text(
                             " لديك حساب بالفعل ؟",
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 15.sp,
                               color: Color(0xff4C8613),
                               fontWeight: FontWeight.w900,
                             ),
@@ -212,7 +214,7 @@ class _RegisterViewState extends State<RegisterView> {
                             child: Text(
                               " تسجيل الدخول",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 color: Color(0xff4C8613),
                                 fontWeight: FontWeight.w900,
                               ),

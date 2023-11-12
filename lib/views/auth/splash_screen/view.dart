@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/logic/cashe_helper.dart';
 import '../../home/view.dart';
 import '../login/view.dart';
@@ -40,8 +40,8 @@ class _SplashViewState extends State<SplashView> {
             width: double.infinity,
           ),
           Positioned(
-            right: -150,
-            bottom: -80,
+            right: -150.w,
+            bottom: -80.w,
             child: Image(
               image: AssetImage("assets/images/img1.png"),
             ),

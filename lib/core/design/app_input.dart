@@ -20,7 +20,7 @@ class AppInput extends StatefulWidget {
       this.paddingTop = 0,
       this.paddingBottom = 16,
       this.isPhone = false,
-      required this.icon,
+        this.icon="",
       required this.hintText, this.isText ,})
       : super(key: key);
 

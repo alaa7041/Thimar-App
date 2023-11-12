@@ -35,8 +35,8 @@ class _AddressViewState extends State<AddressView> {
       child: Scaffold(
         appBar: AppBar(
           leading: Container(
-            height: 32,
-            width: 32,
+            height: 32.h,
+            width: 32.w,
             padding: EdgeInsetsDirectional.only(start: 8),
             child: Center(
               child: Icon(
@@ -44,9 +44,9 @@ class _AddressViewState extends State<AddressView> {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            margin: EdgeInsets.all(8),
+            margin: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(11),
+                borderRadius: BorderRadius.circular(11.r),
                 color: Theme.of(context).primaryColor.withOpacity(.13)),
           ),
           title: Center(
@@ -58,7 +58,7 @@ class _AddressViewState extends State<AddressView> {
         body: Column(
           children: [
             SizedBox(
-              height: 450,
+              height: 450.h,
               child: GoogleMap(
                 onTap: (argument) {
                   markers.add(
@@ -93,7 +93,7 @@ class _AddressViewState extends State<AddressView> {
             ),
             if(myAddress!=null)
               Text(myAddress!),
-            SizedBox(height: 20,),
+            SizedBox(height: 20.h,),
             FloatingActionButton(
               onPressed: () async {
                 goToLocation(

@@ -6,17 +6,16 @@ import 'states.dart';
 
 
 class SliderBloc extends Bloc<SlidersEvents,SliderStates> {
-  SliderBloc(SliderStates sliderStates) : super(SliderStates()){
-    on<SlidersEvent> (_getSliderDataImages);
+  SliderBloc() : super(SliderStates()){
+    on<GetSliderDataEvent> (_getSliderDataImages);
   }
 
 
 
-  Future<void> _getSliderDataImages(SlidersEvent event,Emitter<SliderStates> emit)
+  Future<void> _getSliderDataImages(GetSliderDataEvent event,Emitter<SliderStates> emit)
   async {
     emit(SliderLoadingState());
     final response = await DioHelper().getData("sliders");
-    print(response.response?.data);
     if (response.isSuccess) {
       final model = SliderData.fromJson(response.response!.data);
       emit(SliderSuccessState(list: model.list));

@@ -29,8 +29,7 @@ class DioHelper {
   }
 
   Future<CustomResponse> getData(String endPoint,{Map<String, dynamic>? data}) async {
-    print("(POST)https://thimar.amr.aait-d.com/api/$endPoint");
-    print("Data:$data");
+    print("(GET)https://thimar.amr.aait-d.com/api/$endPoint");
     try {
       final response = await _dio.get(
         endPoint,
@@ -42,6 +41,9 @@ class DioHelper {
         response: response,
       );
     } on DioException catch (ex) {
+      print(ex.response);
+      print(ex.message);
+      print(ex.error);
       return CustomResponse(
         message: ex.response?.data["message"]??"",
         isSuccess: false,

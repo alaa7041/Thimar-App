@@ -6,7 +6,7 @@ import '../../home/view.dart';
 import '../register/view.dart';
 import 'bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'events.dart';
 import 'states.dart';
 
@@ -111,7 +111,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                         },
                       ),),
                       SizedBox(
-                        height: 255,
+                        height: 255.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +119,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           Text(
                             "ليس لديك حساب؟",
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 15.sp,
                               color: Color(0xff4C8613),
                               fontWeight: FontWeight.w900,
                             ),
@@ -132,7 +132,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                             child: Text(
                               " تسجيل الأن",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 color: Color(0xff4C8613),
                                 fontWeight: FontWeight.w900,
                               ),

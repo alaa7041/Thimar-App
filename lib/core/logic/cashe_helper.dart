@@ -1,6 +1,6 @@
-import 'package:shared_preferences/shared_preferences.dart';
+ import '../../views/auth/login/model.dart';
+ import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../views/auth/login/model.dart';
 
 class CasheHelper{
   static late final SharedPreferences _prefs;
@@ -31,6 +31,7 @@ class CasheHelper{
   }
   static bool isAuth(){
     String? token = _prefs.getString("token");
-    return token!=null || (token??"").isNotEmpty;
+    return token!= null || (token??"").isNotEmpty;
   }
+
 }

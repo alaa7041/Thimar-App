@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../features/get_cities/bloc.dart';
 import '../../features/get_cities/model.dart';
 import '../../features/get_cities/states.dart';
@@ -18,7 +18,7 @@ class _CitiesSheetState extends State<CitiesSheet> {
       child: Column(
         children: [
           SizedBox(
-            height: 24,
+            height: 24.h,
           ),
           Text(
             "اختر بلدك",
@@ -27,11 +27,11 @@ class _CitiesSheetState extends State<CitiesSheet> {
                   .of(context)
                   .primaryColor,
               fontWeight: FontWeight.w700,
-              fontSize: 18,
+              fontSize: 18.sp,
             ),
           ),
           BlocBuilder<GetCitiesBloc,GetCitiesStates>(
-            //bloc: cubit,
+
             builder: (context, state) {
               if(state is GetCitiesLoadingState){
                 return Expanded(
@@ -42,7 +42,7 @@ class _CitiesSheetState extends State<CitiesSheet> {
               }else if (state is GetCitiesSuccessState){
                 return Expanded(
                     child: ListView.builder(
-                      padding: EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16.w),
                       itemBuilder: (context, index) =>
                           _Item(
                             model:state.list[index],
@@ -74,10 +74,10 @@ class _Item extends StatelessWidget {
         //print(model.name);
       },
       child: Container(
-        padding: EdgeInsets.all(8),
-        margin: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.all(8.w),
+        margin: EdgeInsets.only(bottom: 10.w),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(7.r),
             color: Theme
                 .of(context)
                 .primaryColor

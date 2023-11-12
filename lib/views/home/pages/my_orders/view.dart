@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
+ import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class MyOrdersPages extends StatelessWidget {
   const MyOrdersPages({Key? key}) : super(key: key);
@@ -26,7 +28,7 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.05),
@@ -36,7 +38,7 @@ class _Item extends StatelessWidget {
           ),
         ],
       ),
-      height: 130,
+      height: 130.h,
       child: Row(
         children: [
           Column(
@@ -45,7 +47,7 @@ class _Item extends StatelessWidget {
               Text(
                 "طلب #4587",
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 17.sp,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor,
                 ),
@@ -53,25 +55,25 @@ class _Item extends StatelessWidget {
               Text(
                 "يونيو,2021,27",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   color: Color(0xff9C9C9C),
                 ),
               ),
               SizedBox(
-                height: 13,
+                height: 13.h,
               ),
               Row(
                 children: [
                   ...List.generate(
                       3,
                       (index) => Container(
-                        height: 35,
-                        width: 35,
-                        margin: EdgeInsetsDirectional.only(end: 3),
+                        height: 35.h,
+                        width: 35.w,
+                        margin: EdgeInsetsDirectional.only(end: 3.w),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.circular(7.r),
                           color: Colors.white,
                           border: Border.all(
                             color: Color(0xffEDF5E6).withOpacity(.6),
@@ -83,12 +85,12 @@ class _Item extends StatelessWidget {
                         ),
                       )),
                   Container(
-                    height: 35,
-                    width: 35,
-                    margin: EdgeInsetsDirectional.only(end: 3),
+                    height: 35.h,
+                    width: 35.w,
+                    margin: EdgeInsetsDirectional.only(end: 3.w),
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
+                      borderRadius: BorderRadius.circular(7.r),
                       color: Color(0xffEDF5E6),
                       border: Border.all(
                         color: Color(0xffEDF5E6).withOpacity(.6),
@@ -100,7 +102,7 @@ class _Item extends StatelessWidget {
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 11,
+                          fontSize: 11.sp,
                         ),
                       ),
                     ),
@@ -114,12 +116,12 @@ class _Item extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                margin: EdgeInsets.only(right: 15),
+                margin: EdgeInsets.only(right: 15.w),
                 padding: EdgeInsets.symmetric(horizontal: 9, vertical: 2),
                 height: 23,
                 width: 95,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
+                  borderRadius: BorderRadius.circular(7.r),
                   color: Theme.of(context).primaryColor.withOpacity(.13),
                 ),
                 child: Center(
@@ -128,7 +130,7 @@ class _Item extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 11,
+                      fontSize: 11.sp,
                     ),
                   ),
                 ),
@@ -136,7 +138,7 @@ class _Item extends StatelessWidget {
               Text(
                 "180ر.س",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w900,
                   color: Theme.of(context).primaryColor,
                 ),

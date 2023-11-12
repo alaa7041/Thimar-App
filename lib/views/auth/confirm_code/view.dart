@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
 import '../../../core/design/app_button.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../register/view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'bloc.dart';
 import 'events.dart';
 import 'states.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class ConfirmCodeView extends StatefulWidget {
   final bool isActive;
@@ -39,7 +39,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                     width: double.infinity,
                   ),
                   ListView(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20).w,
                     children: [
                       Align(
                         alignment: AlignmentDirectional.topCenter,
@@ -48,24 +48,24 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                         ),
                       ),
                       SizedBox(
-                        height: 24,
+                        height: 24.h,
                       ),
                       Text(
                         widget.isActive ? "تفعيل الحساب" : "نسيت كلمة المرور",
                         style: TextStyle(
                           color: Color(0xff4C8613),
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(
-                        height: 16,
+                        height: 16.h,
                       ),
                       Text(
                         "أدخل الكود المكون من 4 أرقام المرسل علي رقم الجوال",
                         style: TextStyle(
                           color: Color(0xff4C8613),
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -85,7 +85,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                         ],
                       ),
                       SizedBox(
-                        height: 22,
+                        height: 22.h,
                       ),
                       PinCodeTextField(
                         controller: bloc.codeController,
@@ -98,9 +98,9 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                         blinkWhenObscuring: true,
                         pinTheme: PinTheme(
                           shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(15),
-                          fieldHeight: 60,
-                          fieldWidth: 70,
+                          borderRadius: BorderRadius.circular(15.r),
+                          fieldHeight: 60.h,
+                          fieldWidth: 70.w,
                           inactiveColor: Color(0xffF3F3F3455),
                           selectedColor: Theme.of(context).primaryColor,
                         ),
@@ -109,7 +109,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                         keyboardType: TextInputType.number,
                       ),
                       SizedBox(
-                        height: 22,
+                        height: 22.h,
                       ),
                       BlocBuilder(
                         bloc: bloc,
@@ -128,24 +128,24 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                         "لم تستلم الكود؟ \n يمكنك إعادة إرسال الكود",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          height: 2,
+                          height: 2.h,
                         ),
                       ),
                       SizedBox(
-                        height: 22,
+                        height: 22.h,
                       ),
                       !bloc.isTimerFinished
                           ? CircularCountDownTimer(
                         duration: 5,
                         initialDuration: 0,
-                        width: 60,
-                        height: 60,
+                        width: 60.w,
+                        height: 60.h,
                         ringColor: Theme.of(context).primaryColor,
                         fillColor: Color(0xffD8D8D8),
                         strokeWidth: 3.0,
                         isReverseAnimation: true,
                         textStyle: TextStyle(
-                            fontSize: 21.0,
+                            fontSize: 21.0.sp,
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold),
                         textFormat: CountdownTextFormat.MM_SS,
@@ -172,7 +172,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                           Text(
                             "ليس لديك حساب ؟",
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 15.sp,
                               color: Color(0xff4C8613),
                               fontWeight: FontWeight.w900,
                             ),
@@ -185,7 +185,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                             child: Text(
                               " تسجيل الأن",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 color: Color(0xff4C8613),
                                 fontWeight: FontWeight.w900,
                               ),

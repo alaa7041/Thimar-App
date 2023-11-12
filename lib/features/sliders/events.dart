@@ -1,2 +1,2 @@
 class SlidersEvents{}
-class SlidersEvent extends SlidersEvents{}
+class GetSliderDataEvent extends SlidersEvents{}

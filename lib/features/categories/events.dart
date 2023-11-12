@@ -1,3 +1,3 @@
 class CategoriesEvents{}
 
-class CategoriesEvent extends CategoriesEvents{}
+class GetCategoriesEvent extends CategoriesEvents{}

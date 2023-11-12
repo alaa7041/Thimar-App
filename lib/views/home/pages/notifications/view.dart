@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'model.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -81,40 +81,40 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.only(bottom: 16).w,
       child: Row(
         children: [
           Container(
-            width: 33,
-            height: 33,
-            padding: EdgeInsets.all(6.5),
+            width: 33.h,
+            height: 33.h,
+            padding: EdgeInsets.all(6.5.w),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor.withOpacity(.13),
-              borderRadius: BorderRadius.circular(9),
+              borderRadius: BorderRadius.circular(9.r),
             ),
             child: Image.network(model.image),
           ),
           SizedBox(
-            width: 10,
+            width: 10.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 model.title,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
               ),
               Text(
                 model.body,
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: 10.sp,
                   fontWeight: FontWeight.w300,
                   color: Color(0xff989898),
                 ),
               ),
               Text(
                 model.time,
-                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500),
               ),
             ],
           )
