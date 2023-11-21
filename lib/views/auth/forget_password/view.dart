@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
+import '../../../features/auth/forget_password/bloc.dart';
 import '../confirm_code/view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
-import 'bloc.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   final String phone;
@@ -34,16 +32,16 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
           body: SafeArea(
             child: Stack(
               children: [
-                Image(
+                const Image(
                   image: AssetImage("assets/images/splash_bg.png"),
                   fit: BoxFit.fill,
                   height: double.infinity,
                   width: double.infinity,
                 ),
                 ListView(
-                  padding: EdgeInsets.all(20).w,
+                  padding: const EdgeInsets.all(20).w,
                   children: [
-                    Align(
+                    const Align(
                       alignment: AlignmentDirectional.topCenter,
                       child: Image(
                         image: AssetImage("assets/images/logo.png"),
@@ -55,7 +53,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     Text(
                       "نسيت كلمة المرور",
                       style: TextStyle(
-                        color: Color(0xff4C8613),
+                        color: const Color(0xff4C8613),
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                       ),
@@ -66,7 +64,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     Text(
                       "أدخل رقم الجوال المرتبط بحسابك",
                       style: TextStyle(
-                        color: Color(0xff4C8613),
+                        color: const Color(0xff4C8613),
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
@@ -111,7 +109,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                           "ليس لديك حساب ؟",
                           style: TextStyle(
                             fontSize: 15.sp,
-                            color: Color(0xff4C8613),
+                            color: const Color(0xff4C8613),
                             fontWeight: FontWeight.w900,
                           ),
                           textAlign: TextAlign.center,
@@ -122,7 +120,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                             " تسجيل الأن",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              color: Color(0xff4C8613),
+                              color: const Color(0xff4C8613),
                               fontWeight: FontWeight.w900,
                             ),
                             textAlign: TextAlign.center,

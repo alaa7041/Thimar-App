@@ -3,11 +3,11 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/logic/helper_methods.dart';
+import '../../../features/auth/confirm_code/bloc.dart';
+import '../../../features/auth/confirm_code/events.dart';
+import '../../../features/auth/confirm_code/states.dart';
 import '../register/view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc.dart';
-import 'events.dart';
-import 'states.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
@@ -32,16 +32,16 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
             child: Scaffold(
               body: Stack(
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage("assets/images/splash_bg.png"),
                     fit: BoxFit.fill,
                     height: double.infinity,
                     width: double.infinity,
                   ),
                   ListView(
-                    padding: EdgeInsets.all(20).w,
+                    padding: const EdgeInsets.all(20).w,
                     children: [
-                      Align(
+                      const Align(
                         alignment: AlignmentDirectional.topCenter,
                         child: Image(
                           image: AssetImage("assets/images/logo.png"),
@@ -53,7 +53,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                       Text(
                         widget.isActive ? "تفعيل الحساب" : "نسيت كلمة المرور",
                         style: TextStyle(
-                          color: Color(0xff4C8613),
+                          color: const Color(0xff4C8613),
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                         ),
@@ -64,20 +64,20 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                       Text(
                         "أدخل الكود المكون من 4 أرقام المرسل علي رقم الجوال",
                         style: TextStyle(
-                          color: Color(0xff4C8613),
+                          color: const Color(0xff4C8613),
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Row(
                         children: [
-                          Text(
+                          const Text(
                             "+9660548745",
                             textDirection: TextDirection.ltr,
                           ),
                           TextButton(
                               onPressed: () {},
-                              child: Text(
+                              child: const Text(
                                 "تغيير رقم الجوال",
                                 style: TextStyle(
                                     decoration: TextDecoration.underline),
@@ -101,7 +101,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                           borderRadius: BorderRadius.circular(15.r),
                           fieldHeight: 60.h,
                           fieldWidth: 70.w,
-                          inactiveColor: Color(0xffF3F3F3455),
+                          inactiveColor: const Color(0xfff3f3f3455),
                           selectedColor: Theme.of(context).primaryColor,
                         ),
                         cursorColor: Colors.black,
@@ -121,7 +121,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Text(
@@ -141,7 +141,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                         width: 60.w,
                         height: 60.h,
                         ringColor: Theme.of(context).primaryColor,
-                        fillColor: Color(0xffD8D8D8),
+                        fillColor: const Color(0xffD8D8D8),
                         strokeWidth: 3.0,
                         isReverseAnimation: true,
                         textStyle: TextStyle(
@@ -161,7 +161,7 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                             bloc.isTimerFinished = false;
                             setState(() {});
                           },
-                          child: Text(
+                          child: const Text(
                             "إعادة الإرسال",
                           ),
                         ),
@@ -173,20 +173,20 @@ class _ConfirmCodeViewState extends State<ConfirmCodeView> {
                             "ليس لديك حساب ؟",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              color: Color(0xff4C8613),
+                              color: const Color(0xff4C8613),
                               fontWeight: FontWeight.w900,
                             ),
                             textAlign: TextAlign.center,
                           ),
                           TextButton(
                             onPressed: () {
-                              navigateTo(RegisterView());
+                              navigateTo(const RegisterView());
                             },
                             child: Text(
                               " تسجيل الأن",
                               style: TextStyle(
                                 fontSize: 15.sp,
-                                color: Color(0xff4C8613),
+                                color: const Color(0xff4C8613),
                                 fontWeight: FontWeight.w900,
                               ),
                               textAlign: TextAlign.center,

@@ -1,9 +1,12 @@
+import 'package:thimar/core/logic/helper_methods.dart';
+
 import 'model.dart';
 
 class SliderStates{}
 class SliderLoadingState extends SliderStates{}
 class SliderSuccessState extends SliderStates{
   final List<SliderModel> list;
+
 
   SliderSuccessState({required this.list});
 }

@@ -1,8 +1,9 @@
 class CategoriesData {
 
-  late final List<CategoryModel > list;
+  late final List<CategoryModel> list;
 
   CategoriesData.fromJson(Map<String, dynamic> json){
+
     list = List.from(json['data']??[]).map((e)=>CategoryModel .fromJson(e))
         .toList();
   }

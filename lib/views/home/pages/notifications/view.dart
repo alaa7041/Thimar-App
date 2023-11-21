@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'model.dart';
+
+import '../../../../features/home/pages/notifications/model.dart';
+
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
@@ -43,7 +45,7 @@ class _NotificationPageState extends State<NotificationPage> {
   bool isLoading = true;
 
   getData() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     isLoading = false;
     setState(() {
 
@@ -51,21 +53,22 @@ class _NotificationPageState extends State<NotificationPage> {
     print("alaa");
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Center(
+        title: const Center(
           child: Text("الاشعارات"),
         ),
       ),
       body: isLoading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               itemBuilder: (context, index) => _Item(model: list[index]),
               itemCount: list.length,
             ),
@@ -81,7 +84,7 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 16).w,
+      padding: const EdgeInsets.only(bottom: 16).w,
       child: Row(
         children: [
           Container(
@@ -109,7 +112,7 @@ class _Item extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w300,
-                  color: Color(0xff989898),
+                  color: const Color(0xff989898),
                 ),
               ),
               Text(

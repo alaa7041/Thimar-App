@@ -1,4 +1,3 @@
-import 'dart:io';
 import '../../../core/design/app_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,7 @@ class _MixViewState extends State<MixView> {
                 children: List.generate(
                   files.length,
                   (index) => AppImage(
-                    files[index].path,
+                    path: files[index].path,
                     width: 100.w,
                     height: 100.h,
                     fit: BoxFit.scaleDown,
@@ -56,9 +55,9 @@ class _MixViewState extends State<MixView> {
                   setState(() {});
                 }
               },
-              child: Text("show"),
+              child: const Text("show"),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
@@ -68,7 +67,7 @@ class _MixViewState extends State<MixView> {
                 aspectRatio: _controller.value.aspectRatio,
                 child: VideoPlayer(_controller),
               )
-                  : CircularProgressIndicator(),
+                  : const CircularProgressIndicator(),
             ),
             ElevatedButton(
               onPressed: () {

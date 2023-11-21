@@ -9,14 +9,14 @@ class MyOrdersPages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text("طلباتي"),
         ),
       ),
       body: ListView.builder(
-          itemBuilder: (context, index) => _Item(),
+          itemBuilder: (context, index) => const _Item(),
           itemCount: 4,
-          padding: EdgeInsets.all(16)),
+          padding: const EdgeInsets.all(16)),
     );
   }
 }
@@ -32,7 +32,7 @@ class _Item extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.05),
-            offset: Offset(0, 6),
+            offset: const Offset(0, 6),
             blurRadius: 17,
             blurStyle: BlurStyle.outer,
           ),
@@ -57,7 +57,7 @@ class _Item extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xff9C9C9C),
+                  color: const Color(0xff9C9C9C),
                 ),
               ),
               SizedBox(
@@ -76,7 +76,7 @@ class _Item extends StatelessWidget {
                           borderRadius: BorderRadius.circular(7.r),
                           color: Colors.white,
                           border: Border.all(
-                            color: Color(0xffEDF5E6).withOpacity(.6),
+                            color: const Color(0xffEDF5E6).withOpacity(.6),
                           ),
                         ),
                         child: Image.network(
@@ -91,9 +91,9 @@ class _Item extends StatelessWidget {
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7.r),
-                      color: Color(0xffEDF5E6),
+                      color: const Color(0xffEDF5E6),
                       border: Border.all(
-                        color: Color(0xffEDF5E6).withOpacity(.6),
+                        color: const Color(0xffEDF5E6).withOpacity(.6),
                       ),
                     ),
                     child: Center(
@@ -111,13 +111,13 @@ class _Item extends StatelessWidget {
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                 margin: EdgeInsets.only(right: 15.w),
-                padding: EdgeInsets.symmetric(horizontal: 9, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 2),
                 height: 23,
                 width: 95,
                 decoration: BoxDecoration(

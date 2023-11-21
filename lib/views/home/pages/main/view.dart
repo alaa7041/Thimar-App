@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/design/app_button.dart';
 import '../../../../core/design/app_image.dart';
 import '../../../../core/design/app_input.dart';
-import '../../../../core/logic/cashe_helper.dart';
+import '../../../../core/logic/cache_helper.dart';
 import '../../../../core/logic/helper_methods.dart';
 import '../../../../features/categories/bloc.dart';
 import '../../../../features/categories/model.dart';
@@ -15,7 +14,6 @@ import '../../../../features/products/model.dart';
 import '../../../../features/products/states.dart';
 import '../../../../features/sliders/bloc.dart';
 import '../../../../features/sliders/states.dart';
-import '../../../auth/login/view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../cart/view.dart';
@@ -39,18 +37,18 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: MainAppBar(),
+        appBar: const MainAppBar(),
         body: ListView(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           children: [
-            AppInput(
+            const AppInput(
               icon: "assets/icons/svg/cart_icon.svg",
               hintText: "ابحث عن ماتريد؟",
             ),
             BlocBuilder<SliderBloc, SliderStates>(
               builder: (context, state) {
                 if (state is SliderLoadingState) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is SliderSuccessState) {
@@ -61,7 +59,7 @@ class _MainPageState extends State<MainPage> {
                             state.list.length,
                                 (index) =>
                                 AppImage(
-                                  state.list[index].media,
+                                  path: state.list[index].media,
                                   fit: BoxFit.fill,
                                   height: 164.h,
                                   width: double.infinity,
@@ -90,21 +88,21 @@ class _MainPageState extends State<MainPage> {
                                         ? Theme
                                         .of(context)
                                         .primaryColor
-                                        : Color(0xff61880c),
+                                        : const Color(0xff61880c),
                                   )),
                         ),
                       ),
                     ],
                   );
                 } else {
-                  return Text("Failed");
+                  return const Text("Failed");
                 }
               },
             ),
             BlocBuilder<CategoriesBloc,CategoriesStates>(
               builder: (context, state) {
                 if (state is CategoriesLoadingState) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is CategoriesSuccessState) {
@@ -115,7 +113,7 @@ class _MainPageState extends State<MainPage> {
                       children: [
                         SizedBox(height: 16.h,),
                         Padding(
-                          padding: EdgeInsetsDirectional.symmetric(
+                          padding: const EdgeInsetsDirectional.symmetric(
                             horizontal: 16,
                           ),
                           child: Text(
@@ -128,7 +126,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                         Expanded(
                             child: ListView.separated(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               separatorBuilder: (context, index) =>
                                   SizedBox(
                                     width: 16.w,
@@ -144,27 +142,27 @@ class _MainPageState extends State<MainPage> {
                     ),
                   );
                 } else {
-                  return Text("Failed");
+                  return const Text("Failed");
                 }
             },),
             BlocBuilder<ProductBloc,ProductsStates>(
                 builder: (context, state) {
                   if (state is ProductsLoadingState) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is ProductsSuccessState) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 16.h,),
-                          Text("الاصناف"),
+                          const Text("الاصناف"),
                           SizedBox(height: 6.h,),
                           GridView.builder(
                             gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount:2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
@@ -175,13 +173,13 @@ class _MainPageState extends State<MainPage> {
                             ),
                             itemCount: state.list.length,
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                           ),
                         ],
                       ),
                     );
                   } else {
-                    return Text("Failed");
+                    return const Text("Failed");
                   }
                 }),
           ],
@@ -198,11 +196,11 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      padding: EdgeInsets.symmetric(horizontal: 16).w,
+      padding: const EdgeInsets.symmetric(horizontal: 16).w,
       child: Row(
         children: [
           AppImage(
-            "assets/images/logo.png",
+            path: "assets/images/logo.png",
             height: 21.h,
             width: 21.w,
             fit: BoxFit.scaleDown,
@@ -230,7 +228,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                       .primaryColor,
                 ),
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "\n",
                   ),
                   TextSpan(
@@ -246,8 +244,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           GestureDetector(
             onTap: () {
-              CasheHelper.clear();
-              navigateTo(CartView());
+              // CacheHelper.clear();
+              navigateTo(const CartView());
             },
             child: Badge(
               alignment: AlignmentDirectional.topStart,
@@ -261,12 +259,11 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               backgroundColor: Theme
                   .of(context)
                   .primaryColor,
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2).w,
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2).w,
               child: Container(
                 height: 33.h,
                 width: 33.w,
-                padding: EdgeInsets.all(7).w,
-                child: SvgPicture.asset("assets/icons/svg/cart_icon.svg"),
+                padding: const EdgeInsets.all(7).w,
                 decoration: BoxDecoration(
                   color: Theme
                       .of(context)
@@ -274,6 +271,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                       .withOpacity(.13),
                   borderRadius: BorderRadius.circular(9.r),
                 ),
+                child: SvgPicture.asset("assets/icons/svg/cart_icon.svg"),
               ),
             ),
           ),
@@ -293,22 +291,20 @@ class _ItemCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 73.w,
       child: Column(
         children: [
           Expanded(
             child: Container(
               width: 73.w,
-
-              //padding: EdgeInsets.all(14),
-              child: AppImage(
-                model.media,
-                fit: BoxFit.scaleDown,
-              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10).r,
                 color: Colors.grey.withOpacity(.1),
+              ),
+              child: AppImage(
+                path: model.media,
+                fit: BoxFit.scaleDown,
               ),
             ),
           ),
@@ -327,7 +323,7 @@ class _ItemProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(9).w,
+      padding: const EdgeInsets.all(9).w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
       ),
@@ -342,7 +338,7 @@ class _ItemProduct extends StatelessWidget {
                   alignment: AlignmentDirectional.topEnd,
                   children: [
                     AppImage(
-                      model.mainImage,
+                      path: model.mainImage,
                       fit: BoxFit.cover,
                     ),
                    Align(
@@ -351,6 +347,12 @@ class _ItemProduct extends StatelessWidget {
                        padding: EdgeInsets.symmetric(
                          horizontal: 10.h,
                          vertical: 3,
+                       ),
+                       decoration: BoxDecoration(
+                           color: Theme.of(context).primaryColor,
+                           borderRadius: BorderRadiusDirectional.only(
+                             bottomStart: Radius.circular(11.r),
+                           )
                        ),
                        child: Text(
                          "${model.discount}%",
@@ -361,12 +363,6 @@ class _ItemProduct extends StatelessWidget {
                            color: Colors.white,
                          ),
                        ),
-                       decoration: BoxDecoration(
-                           color: Theme.of(context).primaryColor,
-                           borderRadius: BorderRadiusDirectional.only(
-                             bottomStart: Radius.circular(11.r),
-                           )
-                       ),
                      ),
                    )
 
@@ -376,7 +372,7 @@ class _ItemProduct extends StatelessWidget {
           ),
           SizedBox(height: 3.h,),
           Text(
-            "${model.title}",
+            model.title,
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -386,7 +382,7 @@ class _ItemProduct extends StatelessWidget {
           SizedBox(height: 3.h,),
           Text(
             "السعر/ 1 ${model.unit.name}",
-            style: TextStyle(color: Color(0xff808080),fontSize: 12.sp,
+            style: TextStyle(color: const Color(0xff808080),fontSize: 12.sp,
                 fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 3.h,),
@@ -398,9 +394,9 @@ class _ItemProduct extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             children: [
-              TextSpan(text: "\t "),
+              const TextSpan(text: "\t "),
               TextSpan(text: "ر.س${model.priceBeforeDiscount}",
-                style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
+                style: const TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
               ),
             ],
           ),

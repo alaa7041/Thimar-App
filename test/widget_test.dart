@@ -13,7 +13,7 @@ import 'package:thimar/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget( StartView());
+    await tester.pumpWidget( const StartView());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

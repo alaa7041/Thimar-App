@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_dialogs/flutter_dialogs.dart';
 import 'package:flutter/material.dart';
 
 class DialogTypes extends StatefulWidget {
@@ -15,59 +14,59 @@ class _DialogTypesState extends State<DialogTypes> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               ElevatedButton(onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Welcome from AlertDialog'),
+                    title: const Text('Welcome from AlertDialog'),
                     actions: [
-                      ElevatedButton(onPressed: (){}, child: Text("CANCEL")),
-                      ElevatedButton(onPressed: (){}, child: Text("ACCEPT")),
+                      ElevatedButton(onPressed: (){}, child: const Text("CANCEL")),
+                      ElevatedButton(onPressed: (){}, child: const Text("ACCEPT")),
                     ],
                   ),
                 );
-              }, child: Text("show Alert Dialog")),
-              SizedBox(height: 10,),
+              }, child: const Text("show Alert Dialog")),
+              const SizedBox(height: 10,),
               ElevatedButton(onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => SimpleDialog(
-                    title: Text("welcom from Simple Dialog"),
+                    title: const Text("welcom from Simple Dialog"),
                     children: [
-                      ElevatedButton(onPressed: (){}, child: Text("CANCEL"),),
-                      ElevatedButton(onPressed: (){}, child: Text("ACCEPT")),
+                      ElevatedButton(onPressed: (){}, child: const Text("CANCEL"),),
+                      ElevatedButton(onPressed: (){}, child: const Text("ACCEPT")),
                     ],
                   ),
                 );
-              }, child: Text("show Simple Dialog")),
-              SizedBox(height: 10,),
+              }, child: const Text("show Simple Dialog")),
+              const SizedBox(height: 10,),
               ElevatedButton(onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => AboutDialog(
                     children: [
-                      ElevatedButton(onPressed: (){}, child: Text("CANCEL"),),
-                      ElevatedButton(onPressed: (){}, child: Text("ACCEPT")),
+                      ElevatedButton(onPressed: (){}, child: const Text("CANCEL"),),
+                      ElevatedButton(onPressed: (){}, child: const Text("ACCEPT")),
                     ],
                   ),
                 );
-              }, child: Text("show About Dialog")),
-              SizedBox(height: 10,),
+              }, child: const Text("show About Dialog")),
+              const SizedBox(height: 10,),
               ElevatedButton(onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => CupertinoAlertDialog(
-                    title: Text("show Cupertino Dialog"),
+                    title: const Text("show Cupertino Dialog"),
                     actions: [
-                      ElevatedButton(onPressed: (){}, child: Text("CANCEL"),),
-                      ElevatedButton(onPressed: (){}, child: Text("ACCEPT")),
+                      ElevatedButton(onPressed: (){}, child: const Text("CANCEL"),),
+                      ElevatedButton(onPressed: (){}, child: const Text("ACCEPT")),
                     ],
                   ),
                 );
-              }, child: Text("show About Dialog")),
+              }, child: const Text("show About Dialog")),
 
             ],
           ),

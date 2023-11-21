@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/logic/cashe_helper.dart';
+import '../../core/logic/cache_helper.dart';
 
 class CounterView extends StatefulWidget {
   const CounterView({Key? key}) : super(key: key);
@@ -9,14 +9,14 @@ class CounterView extends StatefulWidget {
 }
 
 
-int count = CasheHelper.getCount();
+int count = CacheHelper.getCount();
 class _CounterViewState extends State<CounterView> {
 
 
   @override
   void initState() {
     super.initState();
-    CasheHelper.clear();
+    // CacheHelper.clear();
   }
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _CounterViewState extends State<CounterView> {
             FloatingActionButton(
               onPressed: () {
                 count++;
-                CasheHelper.setCount(count);
+                CacheHelper.setCount(count);
                 setState(() {
 
                 });
@@ -41,7 +41,7 @@ class _CounterViewState extends State<CounterView> {
             FloatingActionButton(
               onPressed: () {
                 count--;
-                CasheHelper.setCount(count);
+                CacheHelper.setCount(count);
                 setState(() {
 
                 });

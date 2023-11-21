@@ -1,77 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:thimar/features/auth/login/events.dart';
+import 'package:thimar/features/auth/register/events.dart';
 import 'package:thimar/features/categories/events.dart';
-import 'package:thimar/features/categories/states.dart';
 import 'package:thimar/features/sliders/events.dart';
-import 'package:thimar/features/sliders/states.dart';
-import 'package:thimar/views/auth/forget_password/bloc.dart';
-import 'package:thimar/views/auth/login/view.dart';
+import 'package:thimar/views/auth/register/view.dart';
 import 'package:thimar/views/auth/splash_screen/view.dart';
-import 'package:thimar/views/counter.dart';
 import 'package:thimar/views/home/pages/cart/view.dart';
 import 'package:thimar/views/home/pages/end_order/view.dart';
-import 'package:thimar/views/home/pages/main/view.dart';
 import 'package:thimar/views/home/view.dart';
-import 'core/logic/cashe_helper.dart';
+import 'core/logic/cache_helper.dart';
 import 'core/logic/helper_methods.dart';
+import 'features/auth/confirm_code/bloc.dart';
+import 'features/auth/forget_password/bloc.dart';
+import 'features/auth/login/bloc.dart';
+import 'features/auth/login/states.dart';
+import 'features/auth/register/bloc.dart';
+import 'features/auth/register/states.dart';
+import 'features/auth/reset_password/bloc.dart';
 import 'features/categories/bloc.dart';
 import 'features/get_cities/bloc.dart';
 import 'features/get_cities/events.dart';
 import 'features/get_cities/states.dart';
+import 'features/home/pages/cart/bloc.dart';
+import 'features/home/pages/cart/events.dart';
 import 'features/products/bloc.dart';
 import 'features/sliders/bloc.dart';
-import 'views/auth/confirm_code/bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'views/auth/register/bloc.dart';
-import 'views/auth/register/states.dart';
-import 'views/auth/register/view.dart';
-import 'views/auth/reset_password/bloc.dart';
+import 'views/auth/login/view.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CasheHelper.init();
-   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  await CacheHelper.init();
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: getMaterialColor(),
   ));
-  runApp(StartView());
+  runApp(const StartView());
 }
 
+
 class StartView extends StatelessWidget {
+  const StartView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => SliderBloc()..add(GetSliderDataEvent()),
-          ),
-          BlocProvider(
-            create: (context) => CategoriesBloc()..add(GetCategoriesEvent()),
-          ),
-          BlocProvider(
-            create: (context) => ProductBloc()..getData(),
-          ),
-          BlocProvider(
-            create: (context) =>
-                GetCitiesBloc(GetCitiesStates())..add(GetCitiesEvent()),
-          ),
-          BlocProvider(
-            create: (context) => ConfirmCodeBloc(),
-          ),
-          BlocProvider(
-            create: (context) => RegisterBloc(RegisterStates()),
-          ),
-          BlocProvider(
-            create: (context) => ForgetPasswordBloc(),
-          ),
-          BlocProvider(
-            create: (context) => ResetPasswordBloc(),
-          ),
+          BlocProvider(create: (context) => SliderBloc()..add(GetSliderDataEvent()),),
+          BlocProvider(create: (context) => CategoriesBloc()..add(GetCategoriesEvent()),),
+          BlocProvider(create: (context) => ProductBloc()..getData(),),
+          BlocProvider(create: (context) => GetCitiesBloc(GetCitiesStates())..add(GetCitiesEvent()),),
+          BlocProvider(create: (context) => ConfirmCodeBloc(),),
+          BlocProvider(create: (context) => RegisterBloc()..add(RegisterEvent())),
+          BlocProvider(create: (context) => ForgetPasswordBloc(),),
+          BlocProvider(create: (context) => ResetPasswordBloc(),),
+          BlocProvider(create: (context) => LoginBloc()..add(LoginEvent()),),
+          BlocProvider(create: (context) => CartBloc()..add(CartEvent()
+          ),),
         ],
         child: ScreenUtilInit(
           minTextAdapt: true,
           splitScreenMode: true,
-          designSize: Size(375, 812),
+          designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
             debugShowCheckedModeBanner: false,
             navigatorKey: navigatorKey,
@@ -92,20 +84,20 @@ class StartView extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  fixedSize: Size.fromHeight(60),
+                  fixedSize: const Size.fromHeight(60),
                 ),
               ),
               inputDecorationTheme: InputDecorationTheme(
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 disabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0xffF3F3F3),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0xffF3F3F3),
                   ),
                 ),
@@ -128,24 +120,10 @@ class StartView extends StatelessWidget {
             title: "Thimar",
             home: child,
           ),
-          child: EndOrderView(),
-        ));
+          child: const CartView(),
+        )
+    );
   }
 }
+//01061659611
 
-MaterialColor getMaterialColor() {
-  Color color = Color(0xff4C8613);
-
-  return MaterialColor(color.value, {
-    50: color.withOpacity(0.1),
-    100: color.withOpacity(0.2),
-    200: color.withOpacity(0.3),
-    300: color.withOpacity(0.4),
-    400: color.withOpacity(0.5),
-    500: color.withOpacity(0.6),
-    600: color.withOpacity(0.7),
-    700: color.withOpacity(0.8),
-    800: color.withOpacity(0.9),
-    900: color,
-  });
-}

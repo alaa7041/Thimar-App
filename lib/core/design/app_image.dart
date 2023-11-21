@@ -7,9 +7,8 @@ class AppImage extends StatelessWidget {
   final double? height, width;
   final BoxFit fit;
 
-  const AppImage(
-      this.path,
-      {Key? key,
+  const AppImage({Key? key,
+    required this.path,
         this.height,
         this.width,
         this.fit = BoxFit.scaleDown

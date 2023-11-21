@@ -17,7 +17,7 @@ class GetCitiesBloc extends Bloc<CitiesEvents,GetCitiesStates>{
     if (response.isSuccess) {
       final model = GetCities.fromJson(response.response!.data);
 
-      emit(GetCitiesSuccessState(list: model.list));
+      emit(GetCitiesSuccessState(list: model.list,message: "message"));
     }
     else {
       emit(GetCitiesFailedState());

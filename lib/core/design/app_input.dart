@@ -14,7 +14,7 @@ class AppInput extends StatefulWidget {
   const AppInput(
       {Key? key,
       this.controller,
-      this.validator = null,
+      this.validator,
       this.isEnabled = true,
       this.isPassword = false,
       this.paddingTop = 0,
@@ -62,7 +62,7 @@ class _AppInputState extends State<AppInput> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Color(0xffF3F3F3)),
+                    border: Border.all(color: const Color(0xffF3F3F3)),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -72,10 +72,10 @@ class _AppInputState extends State<AppInput> {
                         width: 32,
                         height: 20,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Text(
+                      const Text(
                         "+966",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -87,9 +87,9 @@ class _AppInputState extends State<AppInput> {
                 )
               : null,
           prefixIcon: Padding(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             child: AppImage(
-              widget.icon,
+              path: widget.icon,
               fit: BoxFit.scaleDown,
               width: 20,
               height: 18,

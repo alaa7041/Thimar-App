@@ -20,7 +20,7 @@ class CategoriesBloc extends Bloc<CategoriesEvents,CategoriesStates>{
       emit(CategoriesSuccessState(list: model.list));
   }else
     {
-      emit(CategoriesFailedState(msg: "msg"));
+      emit(CategoriesFailedState(message: "Failed"));
     }
 }
 }

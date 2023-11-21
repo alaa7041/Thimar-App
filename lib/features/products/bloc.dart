@@ -16,7 +16,7 @@ class ProductBloc extends Bloc<ProductEvents,ProductsStates>{
       final model = ProductsData.fromJson(response.response!.data);
       emit(ProductsSuccessState(list: model.list));
     }else{
-      emit(ProductsFailedState(msg: response.message));
+      emit(ProductsFailedState(message: response.message));
     }
   }
 

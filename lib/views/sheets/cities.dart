@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +33,7 @@ class _CitiesSheetState extends State<CitiesSheet> {
 
             builder: (context, state) {
               if(state is GetCitiesLoadingState){
-                return Expanded(
+                return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(),
                   ),
@@ -50,7 +49,7 @@ class _CitiesSheetState extends State<CitiesSheet> {
                       itemCount: state.list.length,
                     ));
               }else{
-                return Text("Failed");
+                return const Text("Failed");
               }
             },
           ),

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
+import '../../../features/auth/reset_password/bloc.dart';
+import '../../../features/auth/reset_password/events.dart';
+import '../../../features/auth/reset_password/states.dart';
 import '../../home/view.dart';
 import '../register/view.dart';
-import 'bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'events.dart';
-import 'states.dart';
+
 
 class ResetPasswordView extends StatefulWidget {
   final String phone;
@@ -31,7 +32,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           body: SafeArea(
             child: Stack(
               children: [
-                Image(
+                const Image(
                   image: AssetImage("assets/images/splash_bg.png"),
                   fit: BoxFit.fill,
                   height: double.infinity,
@@ -40,18 +41,18 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 Form(
                   key: bloc.formKey,
                   child: ListView(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     children: [
-                      Align(
+                      const Align(
                         alignment: AlignmentDirectional.topCenter,
                         child: Image(
                           image: AssetImage("assets/images/logo.png"),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
-                      Text(
+                      const Text(
                         "نسيت كلمة المرور",
                         style: TextStyle(
                           color: Color(0xff4C8613),
@@ -59,10 +60,10 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
-                      Text(
+                      const Text(
                         "أدخل كلمة المرور الجديدة",
                         style: TextStyle(
                           color: Color(0xff4C8613),
@@ -70,7 +71,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       AppInput(
@@ -107,7 +108,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                         onPress: () {
                           bloc.add(ResetPasswordEvent(
                               phone: widget.phone, code: widget.code));
-                          navigateTo(HomeView());
+                          navigateTo(const HomeView());
                         },
                       ),),
                       SizedBox(
@@ -120,20 +121,20 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                             "ليس لديك حساب؟",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              color: Color(0xff4C8613),
+                              color: const Color(0xff4C8613),
                               fontWeight: FontWeight.w900,
                             ),
                             textAlign: TextAlign.center,
                           ),
                           TextButton(
                             onPressed: () {
-                              navigateTo(RegisterView());
+                              navigateTo(const RegisterView());
                             },
                             child: Text(
                               " تسجيل الأن",
                               style: TextStyle(
                                 fontSize: 15.sp,
-                                color: Color(0xff4C8613),
+                                color: const Color(0xff4C8613),
                                 fontWeight: FontWeight.w900,
                               ),
                               textAlign: TextAlign.center,
