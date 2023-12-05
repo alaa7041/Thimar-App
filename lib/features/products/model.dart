@@ -1,16 +1,16 @@
-class ProductsData  {
+class ProductsData{
 
   late final List<ProductModel> list;
 
-  late final int userCartCount;
+  late final num userCartCount;
   late final num maxPrice;
   late final num minPrice;
 
   ProductsData .fromJson(Map<String, dynamic> json){
     list = List.from(json['data']??[]).map((e)=>ProductModel.fromJson(e)).toList();
-    userCartCount = json['user_cart_count'];
-    maxPrice = json['max_price'];
-    minPrice = json['min_price'];
+    userCartCount = json['user_cart_count']??0;
+    maxPrice = json['max_price']??0;
+    minPrice = json['min_price']??0;
   }
 
 }
@@ -21,11 +21,11 @@ class ProductModel {
   late final String title;
   late final String description;
   late final String code;
-  late final double priceBeforeDiscount;
-  late final double price;
-  late final int discount;
-  late final int amount;
-  late final int isActive;
+  late final num priceBeforeDiscount;
+  late final num price;
+  late final num discount;
+  late final num amount;
+  late final num isActive;
   late final bool isFavorite;
   late final Unit unit;
   late final List<Images> images;
@@ -36,18 +36,19 @@ class ProductModel {
     categoryId = json['category_id'];
     id = json['id'];
     title = json['title'];
-    description = json['description'];
-    code = json['code'];
-    priceBeforeDiscount = double.tryParse(json['price_before_discount'].toString())??0;
-    price = double.tryParse(json['price'].toString())??0;
-    discount = (json['discount']*100).truncate();
-    amount = json['amount'];
-    isActive = json['is_active'];
-    isFavorite = json['is_favorite'];
+    description = json['description']??"";
+    code = json['code']??"";
+    priceBeforeDiscount = num.tryParse(json['price_before_discount'].toString()
+    )??0;
+    price = num.tryParse(json['price'].toString())??0;
+    discount = (json['discount']*100).truncate()??0;
+    amount = json['amount']??0;
+    isActive = json['is_active']??0;
+    isFavorite = json['is_favorite']??0;
     unit = Unit.fromJson(json['unit']);
     images = List.from(json['images']).map((e)=>Images.fromJson(e)).toList();
-    mainImage = json['main_image'];
-    createdAt = json['created_at'];
+    mainImage = json['main_image']??"";
+    createdAt = json['created_at']??"";
   }
 }
 

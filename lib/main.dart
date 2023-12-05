@@ -57,8 +57,7 @@ class StartView extends StatelessWidget {
           BlocProvider(create: (context) => ForgetPasswordBloc(),),
           BlocProvider(create: (context) => ResetPasswordBloc(),),
           BlocProvider(create: (context) => LoginBloc()..add(LoginEvent()),),
-          BlocProvider(create: (context) => CartBloc()..add(CartEvent()
-          ),),
+          BlocProvider(create: (context) => CartBloc()..add(CartEvent()),),
         ],
         child: ScreenUtilInit(
           minTextAdapt: true,
@@ -120,7 +119,7 @@ class StartView extends StatelessWidget {
             title: "Thimar",
             home: child,
           ),
-          child: const CartView(),
+          child: const  HomeView(),
         )
     );
   }

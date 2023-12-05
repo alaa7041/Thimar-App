@@ -13,8 +13,11 @@ class ProductBloc extends Bloc<ProductEvents,ProductsStates>{
     emit(ProductsLoadingState());
     final response = await DioHelper().getData("products");
     if(response.isSuccess){
+
       final model = ProductsData.fromJson(response.response!.data);
+
       emit(ProductsSuccessState(list: model.list));
+
     }else{
       emit(ProductsFailedState(message: response.message));
     }
