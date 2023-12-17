@@ -1,5 +1,4 @@
-import 'package:thimar/core/logic/helper_methods.dart';
-import 'model.dart';
+part of 'bloc.dart';
 
 class ProductsStates{}
 class ProductsLoadingState extends ProductsStates{}

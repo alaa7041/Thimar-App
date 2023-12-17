@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 
-class BarApp extends StatelessWidget {
+class CustomAppBar extends StatefulWidget {
   final String text;
   final VoidCallback onPress;
 
-  const BarApp({Key? key, required this.text, required this.onPress})
+
+  const CustomAppBar({Key? key, required this.text, required this.onPress})
       : super(key: key);
 
   @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return SafeArea(child: Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(text),
-        ),
+        title: Text(widget.text),
         leading: Container(
           margin: const EdgeInsets.all(9),
           width: 30,
@@ -28,9 +31,10 @@ class BarApp extends StatelessWidget {
               Icons.arrow_back_ios,
               color: Theme.of(context).primaryColor,
             ),
-            onPressed: onPress,
+            onPressed: widget.onPress,
           ),
         ),
+
       ),
     ));
   }

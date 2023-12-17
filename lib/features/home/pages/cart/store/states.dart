@@ -1,19 +1,22 @@
-import '../../../../../features/home/pages/cart/states.dart';
-import '../model.dart';
 
-class StoreItemInCartLoadingState extends CartStates {
+import '../get/bloc.dart';
+
+class StoreItemInCartStates{}
+
+class StoreItemInCartLoadingState extends StoreItemInCartStates {
   final int productId;
 
   StoreItemInCartLoadingState({required this.productId});
 }
 
-class StoreItemInCartSuccessState extends CartStates {
+class StoreItemInCartSuccessState extends StoreItemInCartStates {
   final List<StoreModel> list;
 
   StoreItemInCartSuccessState({required this.list});
+
 }
 
-class StoreItemInCartFieldState extends CartStates {
+class StoreItemInCartFieldState extends StoreItemInCartStates {
   final String message;
 
   StoreItemInCartFieldState({required this.message});

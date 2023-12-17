@@ -1,6 +1,6 @@
+part of 'bloc.dart';
 
-import '../../../../../features/home/pages/cart/states.dart';
-
-class DeleteItemFromCartLoadingState extends CartStates{}
-class DeleteItemFromCartSuccessState extends CartStates{}
-class DeleteItemFromCartFailedState extends CartStates{}
+class DeleteItemFromCartStats {}
+class DeleteItemFromCartLoadingState extends DeleteItemFromCartStats{}
+class DeleteItemFromCartSuccessState extends DeleteItemFromCartStats{}
+class DeleteItemFromCartFailedState extends DeleteItemFromCartStats{}

@@ -1,6 +1,7 @@
-import '../events.dart';
+part of 'bloc.dart';
 
-class DeleteItemFromCartEvent extends CartEvents{
+class DeleteItemFromCartEvents{}
+class DeleteItemFromCartEvent extends DeleteItemFromCartEvents{
   final int id;
 
   DeleteItemFromCartEvent({required this.id});

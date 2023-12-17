@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:thimar/features/auth/login/events.dart';
 import 'package:thimar/features/auth/register/events.dart';
 import 'package:thimar/features/categories/events.dart';
+import 'package:thimar/features/home/pages/cart/delet/bloc.dart';
+import 'package:thimar/features/home/pages/cart/store/bloc.dart';
+import 'package:thimar/features/home/pages/cart/store/events.dart';
+import 'package:thimar/features/home/pages/cart/update/bloc.dart';
 import 'package:thimar/features/sliders/events.dart';
 import 'package:thimar/views/auth/register/view.dart';
 import 'package:thimar/views/auth/splash_screen/view.dart';
@@ -22,8 +26,7 @@ import 'features/categories/bloc.dart';
 import 'features/get_cities/bloc.dart';
 import 'features/get_cities/events.dart';
 import 'features/get_cities/states.dart';
-import 'features/home/pages/cart/bloc.dart';
-import 'features/home/pages/cart/events.dart';
+import 'features/home/pages/cart/get/bloc.dart';
 import 'features/products/bloc.dart';
 import 'features/sliders/bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,7 +53,7 @@ class StartView extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => SliderBloc()..add(GetSliderDataEvent()),),
           BlocProvider(create: (context) => CategoriesBloc()..add(GetCategoriesEvent()),),
-          BlocProvider(create: (context) => ProductBloc()..getData(),),
+          BlocProvider(create: (context) => ProductBloc()..add(ProductEvent()),),
           BlocProvider(create: (context) => GetCitiesBloc(GetCitiesStates())..add(GetCitiesEvent()),),
           BlocProvider(create: (context) => ConfirmCodeBloc(),),
           BlocProvider(create: (context) => RegisterBloc()..add(RegisterEvent())),
@@ -58,7 +61,11 @@ class StartView extends StatelessWidget {
           BlocProvider(create: (context) => ResetPasswordBloc(),),
           BlocProvider(create: (context) => LoginBloc()..add(LoginEvent()),),
           BlocProvider(create: (context) => CartBloc()..add(CartEvent()),),
+          BlocProvider(create: (context) => StoreBloc(),),
+          BlocProvider(create: (context) => DeleteItemFromCartBloc(),),
+          BlocProvider(create: (context) => UpdateCartBloc(),),
         ],
+
         child: ScreenUtilInit(
           minTextAdapt: true,
           splitScreenMode: true,
