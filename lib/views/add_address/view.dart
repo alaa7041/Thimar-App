@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../core/design/app_bar.dart';
 import '../../core/logic/helper_methods.dart';
 
 class AddressView extends StatefulWidget {
@@ -33,30 +34,9 @@ class _AddressViewState extends State<AddressView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: Container(
-            height: 32.h,
-            width: 32.w,
-            padding: const EdgeInsetsDirectional.only(start: 8),
-            margin: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(11.r),
-                color: Theme.of(context).primaryColor.withOpacity(.13)),
-            child: Center(
-              child: Icon(
-                Icons.arrow_back_ios,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
-          title: const Center(
-            child: Text(
-              "اضافة عنوان",
-            ),
-          ),
-        ),
         body: Column(
           children: [
+            CustomAppBar(text: "إضافة عنوان", onPress: (){},),
             SizedBox(
               height: 450.h,
               child: GoogleMap(

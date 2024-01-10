@@ -1,3 +1,5 @@
+part of 'bloc.dart';
+
 class SliderData {
 
   late final List<SliderModel> list;
@@ -9,15 +11,12 @@ class SliderData {
 }
 
 class  SliderModel {
-  SliderModel({
-    required this.id,
-    required this.media,
-  });
+
   late final int id;
   late final String media;
 
   SliderModel.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    media = json['media'];
+    id = json['id']??0;
+    media = json['media']??'';
   }
 }

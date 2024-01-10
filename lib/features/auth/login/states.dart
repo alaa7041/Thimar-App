@@ -1,6 +1,5 @@
-import 'package:thimar/core/logic/helper_methods.dart';
 
-import '../../../views/home/view.dart';
+part of 'bloc.dart';
 
 class LoginStates {}
 

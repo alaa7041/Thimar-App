@@ -1,38 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:thimar/features/auth/login/events.dart';
-import 'package:thimar/features/auth/register/events.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thimar/features/categories/events.dart';
 import 'package:thimar/features/home/pages/cart/delet/bloc.dart';
 import 'package:thimar/features/home/pages/cart/store/bloc.dart';
-import 'package:thimar/features/home/pages/cart/store/events.dart';
 import 'package:thimar/features/home/pages/cart/update/bloc.dart';
-import 'package:thimar/features/sliders/events.dart';
-import 'package:thimar/views/auth/register/view.dart';
-import 'package:thimar/views/auth/splash_screen/view.dart';
-import 'package:thimar/views/home/pages/cart/view.dart';
-import 'package:thimar/views/home/pages/end_order/view.dart';
+import 'package:thimar/features/home/pages/favorites/addToFavorites/bloc.dart';
+import 'package:thimar/features/home/pages/favorites/bloc.dart';
 import 'package:thimar/views/home/view.dart';
 import 'core/logic/cache_helper.dart';
 import 'core/logic/helper_methods.dart';
 import 'features/auth/confirm_code/bloc.dart';
 import 'features/auth/forget_password/bloc.dart';
 import 'features/auth/login/bloc.dart';
-import 'features/auth/login/states.dart';
 import 'features/auth/register/bloc.dart';
-import 'features/auth/register/states.dart';
 import 'features/auth/reset_password/bloc.dart';
 import 'features/categories/bloc.dart';
 import 'features/get_cities/bloc.dart';
-import 'features/get_cities/events.dart';
-import 'features/get_cities/states.dart';
+
 import 'features/home/pages/cart/get/bloc.dart';
 import 'features/products/bloc.dart';
 import 'features/sliders/bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'views/auth/login/view.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +31,6 @@ Future<void> main() async {
   ));
   runApp(const StartView());
 }
-
 
 class StartView extends StatelessWidget {
   const StartView({super.key});
@@ -60,12 +48,13 @@ class StartView extends StatelessWidget {
           BlocProvider(create: (context) => ForgetPasswordBloc(),),
           BlocProvider(create: (context) => ResetPasswordBloc(),),
           BlocProvider(create: (context) => LoginBloc()..add(LoginEvent()),),
-          BlocProvider(create: (context) => CartBloc()..add(CartEvent()),),
+          BlocProvider(create: (context) => GetCartBloc()..add(CartEvent()),),
           BlocProvider(create: (context) => StoreBloc(),),
           BlocProvider(create: (context) => DeleteItemFromCartBloc(),),
           BlocProvider(create: (context) => UpdateCartBloc(),),
+          BlocProvider(create: (context) => FavoritesBloc(),),
+          BlocProvider(create: (context) => AddToFavoritesBloc(),),
         ],
-
         child: ScreenUtilInit(
           minTextAdapt: true,
           splitScreenMode: true,
@@ -121,12 +110,11 @@ class StartView extends StatelessWidget {
                 ),
               ),
             ),
-            builder: (context, child) =>
-                Directionality(textDirection: TextDirection.rtl, child: child!),
+            builder: (context, child) => Directionality(textDirection: TextDirection.rtl, child: child!),
             title: "Thimar",
             home: child,
           ),
-          child: const  HomeView(),
+          child: const HomeView(),
         )
     );
   }

@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../features/auth/reset_password/bloc.dart';
-import '../../../features/auth/reset_password/events.dart';
-import '../../../features/auth/reset_password/states.dart';
 import '../../home/view.dart';
 import '../register/view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 class ResetPasswordView extends StatefulWidget {
-  final String phone;
-  final String code;
+  final String phone, code;
 
   const ResetPasswordView({Key? key, required this.phone, required this.code})
       : super(key: key);
@@ -49,9 +45,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           image: AssetImage("assets/images/logo.png"),
                         ),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       const Text(
                         "نسيت كلمة المرور",
                         style: TextStyle(
@@ -60,9 +54,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       const Text(
                         "أدخل كلمة المرور الجديدة",
                         style: TextStyle(
@@ -71,9 +63,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       AppInput(
                         controller: bloc.passwordController,
                         hintText: "كلمة المرور",
@@ -102,18 +92,18 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           return null;
                         },
                       ),
-                      BlocBuilder(builder: (context, state) => AppButton(
-                        isLoading: state is ResetPasswordLoadingState,
-                        text: "تأكيد رقم الجوال ",
-                        onPress: () {
-                          bloc.add(ResetPasswordEvent(
-                              phone: widget.phone, code: widget.code));
-                          navigateTo(const HomeView());
-                        },
-                      ),),
-                      SizedBox(
-                        height: 255.h,
+                      BlocBuilder(
+                        builder: (context, state) => AppButton(
+                          isLoading: state is ResetPasswordLoadingState,
+                          text: "تأكيد رقم الجوال ",
+                          onPress: () {
+                            bloc.add(ResetPasswordEvent(
+                                phone: widget.phone, code: widget.code));
+                            navigateTo(const HomeView());
+                          },
+                        ),
                       ),
+                      SizedBox(height: 255.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

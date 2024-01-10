@@ -1,3 +1,4 @@
+part of 'bloc.dart';
 class GetCities {
 
   late final List<CitiesModel> list;

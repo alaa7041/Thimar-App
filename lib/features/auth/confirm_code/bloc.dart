@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../views/home/view.dart';
-import 'events.dart';
-import 'states.dart';
+part 'states.dart';
+part 'events.dart';
+
+
 
 class ConfirmCodeBloc extends Bloc<ConfirmCodeEvents, ConfirmCodeStates> {
   ConfirmCodeBloc() : super(ConfirmCodeStates()) {

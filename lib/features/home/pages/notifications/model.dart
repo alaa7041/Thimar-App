@@ -11,9 +11,9 @@ class NotificationModel {
   });
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
-    image = json["image"];
-    title = json["title"];
-    body = json["body"];
-    time = json["time"];
+    image = json["image"]??'';
+    title = json["title"]??'';
+    body = json["body"]??'';
+    time = json["time"]??'';
   }
 }

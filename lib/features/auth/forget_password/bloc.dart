@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../views/auth/confirm_code/view.dart';
-import 'events.dart';
-import 'states.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+part 'states.dart';
+part 'events.dart';
 
 class ForgetPasswordBloc
     extends Bloc<ForgetPasswordEvents, ForgetPasswordStates> {

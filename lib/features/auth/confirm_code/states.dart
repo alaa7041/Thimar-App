@@ -1,4 +1,4 @@
-import 'package:thimar/core/logic/helper_methods.dart';
+part of 'bloc.dart';
 
 class ConfirmCodeStates{}
 

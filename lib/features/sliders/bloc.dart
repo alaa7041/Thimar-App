@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:thimar/features/sliders/events.dart';
 import '../../core/logic/dio_helper.dart';
-import 'model.dart';
-import 'states.dart';
+part 'model.dart';
+part 'states.dart';
+part 'events.dart';
 
 
 class SliderBloc extends Bloc<SlidersEvents,SliderStates> {

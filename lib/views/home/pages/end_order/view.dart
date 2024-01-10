@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thimar/views/home/pages/cart/view.dart';
-import '../../../../core/logic/helper_methods.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EndOrderView extends StatefulWidget {
@@ -15,29 +13,6 @@ class _EndOrderViewState extends State<EndOrderView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text("إتمام الطلب"),
-          ),
-          leading: Container(
-            margin: const EdgeInsets.all(9),
-            width: 30,
-            height: 32,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor.withOpacity(0.13),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () {
-                navigateTo(const CartView());
-              },
-            ),
-          ),
-        ),
         body: ListView(
           padding: const EdgeInsets.all(20),
           children: [
@@ -59,9 +34,7 @@ class _EndOrderViewState extends State<EndOrderView> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 11.h,
-            ),
+            SizedBox(height: 11.h),
             Row(
               children: [
                 Text(
@@ -80,9 +53,7 @@ class _EndOrderViewState extends State<EndOrderView> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 36.h,
-            ),
+            SizedBox(height: 36.h),
             Row(
               children: [
                 Text(
@@ -101,29 +72,22 @@ class _EndOrderViewState extends State<EndOrderView> {
               child: Row(
                 children: [
                   const Text("المنزل : 119 طريق الملك عبدالعزيز"),
-                  SizedBox(
-                    width: 125.w,
-                  ),
+                  SizedBox(width: 125.w),
                   const Icon(Icons.keyboard_arrow_down_rounded),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            SizedBox(height: 32.h),
             Text(
               "تحديد وقت التوصيل",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor),
             ),
-            const SizedBox(height: 13,),
+            SizedBox(height: 13.h),
             Row(
-              children: const [
-
-              ],
+              children: const [],
             ),
-
           ],
         ),
       ),

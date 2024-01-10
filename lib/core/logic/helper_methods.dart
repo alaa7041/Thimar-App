@@ -18,8 +18,7 @@ void showMessage(String message, {MessageType type = MessageType.fail}) {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
       content: Text(
         message,
-        style: TextStyle(
-            color: type == MessageType.warning ? Colors.black : Colors.white),
+        style: TextStyle(color: type == MessageType.warning ? Colors.black : Colors.white),
       ),
       backgroundColor: type == MessageType.fail
           ? Colors.red
@@ -31,6 +30,7 @@ void showMessage(String message, {MessageType type = MessageType.fail}) {
     ));
   }
   print(message);
+
 }
 
 MaterialColor getMaterialColor() {

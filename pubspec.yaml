@@ -62,6 +62,7 @@ dev_dependencies:
   flutter_dialogs: ^3.0.0
   geolocator: ^10.1.0
   geocoding: ^2.1.0
+  easy_localization: ^3.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -76,8 +77,10 @@ flutter:
 
 
 
+
   assets:
       - assets/images/
+      - assets/translations/
       - assets/icons/
       - assets/icons/svg/
 

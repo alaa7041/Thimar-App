@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thimar/core/logic/helper_methods.dart';
+
 import '../../../core/logic/cache_helper.dart';
 import '../../home/view.dart';
 import '../login/view.dart';
@@ -43,7 +45,7 @@ class _SplashViewState extends State<SplashView> {
             right: -150.w,
             bottom: -80.w,
             child: const Image(
-              image: AssetImage("assets/images/img1.png"),
+              image: AssetImage("assets/images/splash_image.png"),
             ),
           ),
           //logo

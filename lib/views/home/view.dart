@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'pages/favorites/view.dart';
 import 'pages/main/view.dart';
 import 'pages/my_account/view.dart';
@@ -20,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
     const MyOrdersPages(),
     const NotificationPage(),
     const MainPage(),
-    const FavoraitesPage(),
+    const FavoritesView(),
     const MyAccountPage(),
   ];
 
@@ -33,9 +34,9 @@ class _HomeViewState extends State<HomeView> {
   ];
 
   List<String> icons = [
-    "home_icon",
     "my_orders_icon",
     "notification_icon",
+    "home_icon",
     "fav_icon",
     "user_icon",
   ];

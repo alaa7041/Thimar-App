@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:thimar/features/get_cities/states.dart';
+import 'package:thimar/core/logic/helper_methods.dart';
 import '../../core/logic/dio_helper.dart';
-import 'events.dart';
-import 'model.dart';
+part 'events.dart';
+part 'model.dart';
+part 'states.dart';
 
 class GetCitiesBloc extends Bloc<CitiesEvents,GetCitiesStates>{
   GetCitiesBloc(GetCitiesStates getCitiesStates):super(GetCitiesStates()){

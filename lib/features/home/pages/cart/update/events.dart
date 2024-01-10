@@ -1,4 +1,4 @@
-
+part of 'bloc.dart';
 
 class UpdateItemInCartEvents{}
 class UpdateItemInCartEvent extends UpdateItemInCartEvents{

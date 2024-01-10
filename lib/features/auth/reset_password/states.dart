@@ -1,5 +1,4 @@
-import '../../../core/logic/helper_methods.dart';
-
+part of 'bloc.dart';
 class ResetPasswordStates{}
 
 class ResetPasswordSuccessState extends ResetPasswordStates{

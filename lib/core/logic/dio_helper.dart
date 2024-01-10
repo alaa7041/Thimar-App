@@ -12,6 +12,7 @@ class DioHelper {
   Future<CustomResponse> sendData(String endPoint,
       {Map<String, dynamic>? data}) async {
     print("(POST)https://thimar.amr.aait-d.com/api/$endPoint");
+    print('"Authorization": "Bearer ${CacheHelper.getToken()}"');
     try {
       final response = await _dio.post(endPoint,
           data: data,

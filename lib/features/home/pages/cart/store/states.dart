@@ -1,6 +1,4 @@
-
-import '../get/bloc.dart';
-
+part of 'bloc.dart';
 class StoreItemInCartStates{}
 
 class StoreItemInCartLoadingState extends StoreItemInCartStates {
@@ -11,7 +9,6 @@ class StoreItemInCartLoadingState extends StoreItemInCartStates {
 
 class StoreItemInCartSuccessState extends StoreItemInCartStates {
   final List<StoreModel> list;
-
   StoreItemInCartSuccessState({required this.list});
 
 }

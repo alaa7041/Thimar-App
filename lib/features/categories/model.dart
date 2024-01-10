@@ -1,3 +1,5 @@
+part of'bloc.dart';
+
 class CategoriesData {
 
   late final List<CategoryModel> list;
@@ -12,14 +14,12 @@ class CategoriesData {
 class CategoryModel {
 
   late final int id;
-  late final String name;
-  late final String description;
-  late final String media;
+  late final String name, description, media;
 
   CategoryModel .fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    name = json['name'];
-    description = json['description'];
-    media = json['media'];
+    id = json['id']??0;
+    name = json['name']??"";
+    description = json['description']??'';
+    media = json['media']??"";
   }
 }

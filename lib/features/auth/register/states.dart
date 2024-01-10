@@ -1,5 +1,4 @@
-import '../../../core/logic/helper_methods.dart';
-
+part of 'bloc.dart';
 class RegisterStates{}
 
 class RegisterLoadingStates extends  RegisterStates{}

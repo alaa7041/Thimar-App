@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../views/home/view.dart';
-import 'events.dart';
-import 'states.dart';
+part 'states.dart';
+part 'events.dart';
 
 class ResetPasswordBloc extends Bloc<ResetPasswordEvents, ResetPasswordStates> {
   ResetPasswordBloc() : super(ResetPasswordStates()) {

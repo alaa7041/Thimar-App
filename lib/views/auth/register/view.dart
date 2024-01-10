@@ -1,36 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:thimar/features/auth/register/events.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../features/auth/register/bloc.dart';
-import '../../../features/auth/register/states.dart';
 import '../../sheets/cities.dart';
 import '../login/view.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
 
   @override
   State<RegisterView> createState() => _RegisterViewState();
-
-
 }
+
 class _RegisterViewState extends State<RegisterView> {
   late RegisterBloc bloc;
 
   @override
   void initState() {
-     bloc = BlocProvider.of<RegisterBloc>(context);
+    bloc = BlocProvider.of<RegisterBloc>(context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
@@ -43,7 +39,7 @@ class _RegisterViewState extends State<RegisterView> {
             Form(
               key: bloc.formKey,
               child: ListView(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(20.w),
                 children: [
                   const Align(
                     alignment: AlignmentDirectional.topCenter,
@@ -51,9 +47,7 @@ class _RegisterViewState extends State<RegisterView> {
                       image: AssetImage("assets/images/logo.png"),
                     ),
                   ),
-                  SizedBox(
-                    height: 21.h,
-                  ),
+                  SizedBox(height: 21.h),
                   Text(
                     "مرحبا بك مرة أخرى",
                     style: TextStyle(
@@ -62,9 +56,7 @@ class _RegisterViewState extends State<RegisterView> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  SizedBox(height: 10.h),
                   Text(
                     "يمكنك تسجيل حساب جديد الأن",
                     style: TextStyle(
@@ -102,59 +94,54 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   StatefulBuilder(
-                    builder: (context, setState) =>
-                        GestureDetector(
-                          onTap: () async {
-                            var result = await showModalBottomSheet(
-                              context: context,
-                              builder: (context) => const CitiesSheet(),
-                            );
-                            if (result != null) {
-                              bloc.selectedCity = result;
-                              setState(() {});
-                              print("the result is ${bloc.selectedCity!
-                                  .name}");
-                            }
-                          },
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: AbsorbPointer(
-                                  absorbing: true,
-                                  child: AppInput(
-                                    isText: TextInputType.none,
-                                    hintText: bloc.selectedCity?.name ??
-                                        "المدينة",
-                                    icon: "assets/icons/city.png",
-                                    paddingBottom: 0.w,
-                                    validator: (value) {
-                                      if (bloc.selectedCity == null) {
-                                        return "يجب اختيار المدينه";
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
+                    builder: (context, setState) => GestureDetector(
+                      onTap: () async {
+                        var result = await showModalBottomSheet(
+                          context: context,
+                          builder: (context) => const CitiesSheet(),
+                        );
+                        if (result != null) {
+                          bloc.selectedCity = result;
+                          setState(() {});
+                          print("the result is ${bloc.selectedCity!.name}");
+                        }
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: AbsorbPointer(
+                              absorbing: true,
+                              child: AppInput(
+                                isText: TextInputType.none,
+                                hintText: bloc.selectedCity?.name ?? "المدينة",
+                                icon: "assets/icons/city.png",
+                                paddingBottom: 0.w,
+                                validator: (value) {
+                                  if (bloc.selectedCity == null) {
+                                    return "يجب اختيار المدينه";
+                                  }
+                                  return null;
+                                },
                               ),
-                              if (bloc.selectedCity != null)
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.clear,
-                                    size: 24.w,
-                                  ),
-                                  onPressed: () {
-                                    bloc.selectedCity = null;
-                                    setState(() {});
-                                  },
-                                ),
-                            ],
+                            ),
                           ),
-                        ),
+                          if (bloc.selectedCity != null)
+                            IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                size: 24.w,
+                              ),
+                              onPressed: () {
+                                bloc.selectedCity = null;
+                                setState(() {});
+                              },
+                            ),
+                        ],
+                      ),
+                    ),
                   ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
+                  SizedBox(height: 16.h),
                   AppInput(
                     controller: bloc.passwordController,
                     hintText: "كلمة المرور",
@@ -162,13 +149,9 @@ class _RegisterViewState extends State<RegisterView> {
                     isPassword: true,
                     paddingBottom: 16.w,
                     validator: (value) {
-                      if (value
-                          .toString()
-                          .isEmpty) {
+                      if (value.toString().isEmpty) {
                         return "كلمة المرور مطلوبه";
-                      } else if (value
-                          .toString()
-                          .length < 6) {
+                      } else if (value.toString().length < 6) {
                         return "كلمة المرور ضعيفه";
                       }
                       return null;
@@ -181,9 +164,7 @@ class _RegisterViewState extends State<RegisterView> {
                     isPassword: true,
                     paddingBottom: 24.w,
                     validator: (value) {
-                      if (value
-                          .toString()
-                          .isEmpty) {
+                      if (value.toString().isEmpty) {
                         return "كلمة المرور مطلوبه";
                       } else if (value != bloc.passwordController.text) {
                         return "كلمتا المرور غير متطابقتين";
@@ -194,16 +175,14 @@ class _RegisterViewState extends State<RegisterView> {
                   BlocBuilder(
                     bloc: bloc,
                     builder: (context, state) => AppButton(
-                        text: "تسجيل ",
-                        isLoading:state is RegisterLoadingStates,
-                        onPress: () {
-                          bloc.add(RegisterEvent());
-                        },
-                      ),
+                      text: "تسجيل ",
+                      isLoading: state is RegisterLoadingStates,
+                      onPress: () {
+                        bloc.add(RegisterEvent());
+                      },
+                    ),
                   ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
+                  SizedBox(height: 30.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

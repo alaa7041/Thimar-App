@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../features/home/pages/notifications/model.dart';
+import 'components/notification_item.dart';
 
 
 class NotificationPage extends StatefulWidget {
@@ -47,9 +47,7 @@ class _NotificationPageState extends State<NotificationPage> {
   getData() async {
     await Future.delayed(const Duration(seconds: 3));
     isLoading = false;
-    setState(() {
-
-    });
+    setState(() {});
     print("alaa");
   }
 
@@ -68,61 +66,10 @@ class _NotificationPageState extends State<NotificationPage> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemBuilder: (context, index) => _Item(model: list[index]),
+              padding: EdgeInsets.all(16.w),
+              itemBuilder: (context, index) => NotificationItem(model: list[index]),
               itemCount: list.length,
             ),
-    );
-  }
-}
-
-class _Item extends StatelessWidget {
-  final NotificationModel model;
-
-  const _Item({Key? key, required this.model}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16).w,
-      child: Row(
-        children: [
-          Container(
-            width: 33.h,
-            height: 33.h,
-            padding: EdgeInsets.all(6.5.w),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor.withOpacity(.13),
-              borderRadius: BorderRadius.circular(9.r),
-            ),
-            child: Image.network(model.image),
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                model.title,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                model.body,
-                style: TextStyle(
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w300,
-                  color: const Color(0xff989898),
-                ),
-              ),
-              Text(
-                model.time,
-                style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500),
-              ),
-            ],
-          )
-        ],
-      ),
     );
   }
 }

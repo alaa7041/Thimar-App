@@ -1,3 +1,5 @@
+part of 'bloc.dart';
+
 class ConfirmCodeEvents{}
 
 class ConfirmCodeEvent extends ConfirmCodeEvents{

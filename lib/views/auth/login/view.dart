@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:thimar/features/auth/login/events.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../features/auth/login/bloc.dart';
-import '../../../features/auth/login/states.dart';
+import '../../../generated/locale_keys.g.dart';
 import '../forget_password/view.dart';
 import '../register/view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       body: SafeArea(
         child: Stack(
-          children:[
+          children: [
             const Image(
               image: AssetImage("assets/images/splash_bg.png"),
               fit: BoxFit.fill,
@@ -50,20 +49,16 @@ class _LoginViewState extends State<LoginView> {
                       image: AssetImage("assets/images/logo.png"),
                     ),
                   ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
+                  SizedBox(height: 24.h),
                   Text(
-                    "مرحبا بك مرة أخرى",
+                    LocaleKeys.welcomeAgain.tr(),
                     style: TextStyle(
                       color: const Color(0xff4C8613),
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   Text(
                     "يمكنك تسجيل الدخول الأن",
                     style: TextStyle(
@@ -103,19 +98,20 @@ class _LoginViewState extends State<LoginView> {
                       return null;
                     },
                   ),
-                  TextButton(onPressed: (){
-                    navigateTo(const ForgetPasswordView());
-                  }, child: Text(
-                    "نسيت كلمة المرور ؟",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      color: const Color(0xff707070),
+                  TextButton(
+                    onPressed: () {
+                      navigateTo(const ForgetPasswordView());
+                    },
+                    child: Text(
+                      "نسيت كلمة المرور ؟",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        color: const Color(0xff707070),
+                      ),
+                      textAlign: TextAlign.end,
                     ),
-                    textAlign: TextAlign.end,
-                  ),),
-                  SizedBox(
-                    height: 22.h,
                   ),
+                  SizedBox(height: 22.h),
                   BlocBuilder(
                     bloc: bloc,
                     builder: (context, state) => AppButton(
@@ -126,9 +122,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: 45.h,
-                  ),
+                  SizedBox(height: 45.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

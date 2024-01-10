@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../features/auth/forget_password/bloc.dart';
 import '../confirm_code/view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   final String phone;
@@ -15,8 +15,7 @@ class ForgetPasswordView extends StatefulWidget {
     Key? key,
     this.phone = "",
     this.isActive = false,
-  }) : super
-      (key: key);
+  }) : super(key: key);
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -39,7 +38,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   width: double.infinity,
                 ),
                 ListView(
-                  padding: const EdgeInsets.all(20).w,
+                  padding: EdgeInsets.all(20.w),
                   children: [
                     const Align(
                       alignment: AlignmentDirectional.topCenter,
@@ -47,9 +46,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         image: AssetImage("assets/images/logo.png"),
                       ),
                     ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
+                    SizedBox(height: 24.h),
                     Text(
                       "نسيت كلمة المرور",
                       style: TextStyle(
@@ -58,9 +55,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
+                    SizedBox(height: 16.h),
                     Text(
                       "أدخل رقم الجوال المرتبط بحسابك",
                       style: TextStyle(
@@ -93,15 +88,12 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       builder: (context, state) => AppButton(
                         text: "تأكيد رقم الجوال",
                         onPress: () {
-
-                          navigateTo(ConfirmCodeView(phone: widget.phone,
-                          isActive: widget.isActive));
+                          navigateTo(ConfirmCodeView(
+                              phone: widget.phone, isActive: widget.isActive));
                         },
                       ),
                     ),
-                    SizedBox(
-                      height: 45.h,
-                    ),
+                    SizedBox(height: 45.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

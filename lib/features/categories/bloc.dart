@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thimar/features/categories/events.dart';
-import 'package:thimar/features/categories/states.dart';
 import '../../core/logic/dio_helper.dart';
-import 'model.dart';
+part 'model.dart';
+part 'states.dart';
+
 
 
 class CategoriesBloc extends Bloc<CategoriesEvents,CategoriesStates>{

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../features/get_cities/bloc.dart';
-import '../../features/get_cities/model.dart';
-import '../../features/get_cities/states.dart';
+
 class CitiesSheet extends StatefulWidget {
   const CitiesSheet({Key? key}) : super(key: key);
   @override

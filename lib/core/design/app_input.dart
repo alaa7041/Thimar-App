@@ -10,7 +10,6 @@ class AppInput extends StatefulWidget {
   final TextEditingController? controller;
   final TextInputType? isText;
 
-
   const AppInput(
       {Key? key,
       this.controller,
@@ -34,8 +33,7 @@ class _AppInputState extends State<AppInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(bottom: widget.paddingBottom, top: widget.paddingTop),
+      padding: EdgeInsets.only(bottom: widget.paddingBottom, top: widget.paddingTop),
       child: TextFormField(
         controller: widget.controller,
         obscureText: isPasswordHidden && widget.isPassword,

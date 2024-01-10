@@ -2,7 +2,6 @@ part of 'bloc.dart';
 
 class ProductsData {
   late final List<ProductModel> list;
-
   late final double userCartCount,maxPrice,minPrice;
 
 
@@ -17,26 +16,18 @@ class ProductsData {
 }
 
 class ProductModel {
-  late final int categoryId;
-  late final int id;
-  late final String title;
-  late final String description;
-  late final String code;
-  late final num priceBeforeDiscount;
-  late final num price;
-  late final num discount;
-  late final num amount;
-  late final num isActive;
+  late final int categoryId, id;
+  late final String title,description, code;
+  late final num priceBeforeDiscount, price,discount, amount, isActive;
   late final bool isFavorite;
   late final Unit unit;
   late final List<Images> images;
-  late final String mainImage;
-  late final String createdAt;
+  late final String mainImage,createdAt;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    categoryId = json['category_id'];
-    id = json['id'];
-    title = json['title'];
+    categoryId = json['category_id']??0;
+    id = json['id']??0;
+    title = json['title']??'';
     description = json['description'] ?? "";
     code = json['code'] ?? "";
     priceBeforeDiscount =
@@ -55,26 +46,22 @@ class ProductModel {
 
 class Unit {
   late final int id;
-  late final String name;
-  late final String type;
-  late final String createdAt;
-  late final String updatedAt;
+  late final String name,type, createdAt,updatedAt;
 
   Unit.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    type = json['type'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    id = json['id']??0;
+    name = json['name']??'';
+    type = json['type']??'';
+    createdAt = json['created_at']??'';
+    updatedAt = json['updated_at']??'';
   }
 }
 
 class Images {
-  late final String name;
-  late final String url;
+  late final String name, url;
 
   Images.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    url = json['url'];
+    name = json['name']??'';
+    url = json['url']??'';
   }
 }

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/logic/cache_helper.dart';
 import '../../../core/logic/dio_helper.dart';
-import 'events.dart';
-import 'model.dart';
-import 'states.dart';
+import '../../../core/logic/helper_methods.dart';
+import '../../../views/home/view.dart';
+part 'events.dart';
+part 'model.dart';
+part 'states.dart';
 
 class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   LoginBloc() : super(LoginStates()) {
