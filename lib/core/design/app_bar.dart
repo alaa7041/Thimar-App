@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kiwi/kiwi.dart';
+import '../../features/home/pages/favorites/add_favorites/bloc.dart';
 
-import '../../features/home/pages/favorites/addToFavorites/bloc.dart';
 
 class CustomAppBar extends StatefulWidget {
   final bool isFavorite;
@@ -21,73 +22,70 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+  final bloc = KiwiContainer().resolve<AddToFavoritesBloc>();
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddToFavoritesBloc(),
-      child: Builder(
-        builder: (context) {
-          AddToFavoritesBloc bloc = BlocProvider.of(context);
-          return AppBar(
-            title: Center(
-              child: Text(
-                widget.text,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
+    return AppBar(
+      centerTitle: true,
+      title: Text(
+        widget.text,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+      ),
+      leading: Padding(
+        padding: const EdgeInsets.all(9.5),
+        child: Container(
+          width: 36.w,
+          height: 32.h,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor.withOpacity(0.13),
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Theme.of(context).primaryColor,
             ),
-            leading: Padding(
-              padding: const EdgeInsets.all(9.5),
-              child: Container(
-                width: 36.w,
-                height: 32.h,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.13),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: IconButton(
+            onPressed: widget.onPress,
+          ),
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(9.5),
+          child: widget.isFavorite
+              ? Container(
+            width: 36.w,
+            height: 32.h,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor.withOpacity(0.13),
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            child:
+            BlocBuilder(
+              bloc: bloc,
+              builder: (context, state) {
+                return IconButton(
                   icon: Icon(
-                    Icons.arrow_back_ios,
+                    Icons.favorite_border,
                     color: Theme.of(context).primaryColor,
                   ),
-                  onPressed: widget.onPress,
-                ),
-              ),
+                  onPressed: () {
+                    bloc.add(AddToFavoritesEvent(
+                      isFavorites: true,
+                      productId: 2,
+                    ));
+                  },
+                );
+              },
             ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(9.5),
-                child: widget.isFavorite
-                    ? Container(
-                        width: 36.w,
-                        height: 32.h,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor.withOpacity(0.13),
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
-                        child: BlocBuilder<AddToFavoritesBloc,AddToFavoritesStates>(
-                          builder: (context, state) {
-                            return IconButton(
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              onPressed: () {
-                                bloc.add(AddToFavoritesEvent(isFavorites: 
-                                true, productId: 2,));
-                              },
-                            );
-                          },
-                        ),
-                      )
-                    : null,
-              ),
-            ],
-          );
-        },
-      ),
+          )
+              : null,
+        ),
+      ],
     );
   }
 }

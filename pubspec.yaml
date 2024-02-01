@@ -63,6 +63,8 @@ dev_dependencies:
   geolocator: ^10.1.0
   geocoding: ^2.1.0
   easy_localization: ^3.0.3
+  kiwi: ^4.1.0
+  flutter_date_pickers: ^0.4.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

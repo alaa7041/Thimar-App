@@ -22,7 +22,7 @@ class _HomeViewState extends State<HomeView> {
     const NotificationPage(),
     const MainPage(),
     const FavoritesView(),
-    const MyAccountPage(),
+    MyAccountPage(),
   ];
 
   List<String> titles = [

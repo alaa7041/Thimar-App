@@ -8,8 +8,8 @@ class StoreItemInCartLoadingState extends StoreItemInCartStates {
 }
 
 class StoreItemInCartSuccessState extends StoreItemInCartStates {
-  final List<StoreModel> list;
-  StoreItemInCartSuccessState({required this.list});
+  final ProductModel model;
+  StoreItemInCartSuccessState({required this.model});
 
 }
 

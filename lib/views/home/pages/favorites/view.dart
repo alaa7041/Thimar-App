@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kiwi/kiwi.dart';
+
 import '../../../../core/design/app_bar.dart';
 import '../../../../features/home/pages/favorites/bloc.dart';
 import 'components/item_favorites_product.dart';
@@ -13,14 +15,9 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  late FavoritesBloc bloc;
+  final bloc = KiwiContainer().resolve<FavoritesBloc>()
+    ..add(FavoritesEvent());
   late FavoritesModel model;
-
-  void initState() {
-    bloc = BlocProvider.of(context);
-    bloc.add(FavoritesEvents());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,8 @@ class _FavoritesViewState extends State<FavoritesView> {
           ),
           Column(
             children: [
-              BlocBuilder<FavoritesBloc, FavoritesStates>(
+              BlocBuilder(
+                bloc: bloc,
                 builder: (context, state) {
                   if (state is FavoritesLoadingState) {
                     return const Center(
@@ -53,7 +51,8 @@ class _FavoritesViewState extends State<FavoritesView> {
                               mainAxisSpacing: 10.h,
                               childAspectRatio: 163 / 250,
                             ),
-                            itemBuilder: (context, index) => ItemFavoritesProduct(
+                            itemBuilder: (context, index) =>
+                                ItemFavoritesProduct(
                               model: state.list[index],
                               bloc: bloc,
                             ),

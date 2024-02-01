@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kiwi/kiwi.dart';
+
 import '../../../core/design/app_button.dart';
 import '../../../core/design/app_input.dart';
 import '../../../core/logic/helper_methods.dart';
@@ -8,7 +11,7 @@ import '../../../features/auth/login/bloc.dart';
 import '../../../generated/locale_keys.g.dart';
 import '../forget_password/view.dart';
 import '../register/view.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -18,13 +21,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  late LoginBloc bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    bloc = BlocProvider.of<LoginBloc>(context);
-  }
+  final bloc = KiwiContainer().resolve<LoginBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +55,7 @@ class _LoginViewState extends State<LoginView> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                   SizedBox(height: 16.h),
                   Text(
                     "يمكنك تسجيل الدخول الأن",
                     style: TextStyle(

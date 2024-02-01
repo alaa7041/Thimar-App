@@ -13,6 +13,7 @@ class DioHelper {
       {Map<String, dynamic>? data}) async {
     print("(POST)https://thimar.amr.aait-d.com/api/$endPoint");
     print('"Authorization": "Bearer ${CacheHelper.getToken()}"');
+
     try {
       final response = await _dio.post(endPoint,
           data: data,
@@ -40,20 +41,21 @@ class DioHelper {
   Future<CustomResponse> getData(String endPoint,
       {Map<String, dynamic>? data}) async {
     print("(GET)https://thimar.amr.aait-d.com/api/$endPoint");
+
     try {
-      final response = await _dio.get(
-        endPoint,
+      final response = await _dio.get(endPoint,
           data: data,
-        queryParameters: data,options: Options(headers: {
-        "Authorization": "Bearer ${CacheHelper.getToken()}",
-      })
-      );
+          queryParameters: data,
+          options: Options(headers: {
+            "Authorization": "Bearer ${CacheHelper.getToken()}",
+          }));
       print(response.headers.map);
       return CustomResponse(
         isSuccess: true,
         message: response.data["message"],
         response: response,
       );
+
     } on DioException catch (ex) {
       String msg;
       try {
@@ -64,6 +66,7 @@ class DioHelper {
       print(ex.response);
       print(ex.message);
       print(ex.error);
+
       return CustomResponse(
         message: msg,
         isSuccess: false,
@@ -71,7 +74,6 @@ class DioHelper {
       );
     }
   }
-
 }
 
 class CustomResponse {

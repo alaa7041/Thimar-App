@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../features/home/pages/notifications/model.dart';
 import 'components/notification_item.dart';
 
@@ -57,16 +58,15 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Center(
-          child: Text("الاشعارات"),
-        ),
+        title: Text("الاشعارات"),
+        centerTitle: true,
       ),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              padding: EdgeInsets.all(16.w),
+              padding: EdgeInsets.all(16.r),
               itemBuilder: (context, index) => NotificationItem(model: list[index]),
               itemCount: list.length,
             ),

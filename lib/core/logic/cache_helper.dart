@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../features/auth/login/bloc.dart';
 
 class CacheHelper {
@@ -20,11 +21,6 @@ class CacheHelper {
     return _prefs.setInt("countkey", value);
   }
 
-  // static Future<bool> clear() {
-  //   print("cleared Success");
-  //   return _prefs.clear();
-  // }
-
   static Future<void> saveUserData(UserModel model) async {
     await _prefs.setString("phone", model.phone);
     await _prefs.setString("email", model.email);
@@ -39,8 +35,5 @@ class CacheHelper {
       }
 
   }
-/* static bool isAuth(){
-    String? token = _prefs.getString("token");
-    return token!= null || (token??"").isNotEmpty;
-  }*/
+
 }

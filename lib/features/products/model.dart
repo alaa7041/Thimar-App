@@ -2,7 +2,7 @@ part of 'bloc.dart';
 
 class ProductsData {
   late final List<ProductModel> list;
-  late final double userCartCount,maxPrice,minPrice;
+  late final num userCartCount,maxPrice,minPrice;
 
 
   ProductsData.fromJson(Map<String, dynamic> json) {
@@ -18,10 +18,9 @@ class ProductsData {
 class ProductModel {
   late final int categoryId, id;
   late final String title,description, code;
-  late final num priceBeforeDiscount, price,discount, amount, isActive;
+  late final num priceBeforeDiscount,deliveryCost, price,discount, amount, isActive;
   late final bool isFavorite;
   late final Unit unit;
-  late final List<Images> images;
   late final String mainImage,createdAt;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -30,18 +29,27 @@ class ProductModel {
     title = json['title']??'';
     description = json['description'] ?? "";
     code = json['code'] ?? "";
-    priceBeforeDiscount =
-        num.tryParse(json['price_before_discount'].toString()) ?? 0;
+    priceBeforeDiscount = num.tryParse(json['price_before_discount'].toString()) ?? 0;
     price = num.tryParse(json['price'].toString()) ?? 0;
+    deliveryCost = json['delivery_cost'] ?? 0;
     discount = (json['discount'] * 100).truncate() ?? 0;
     amount = json['amount'] ?? 0;
     isActive = json['is_active'] ?? 0;
-    isFavorite = json['is_favorite'] ?? 0;
-    unit = Unit.fromJson(json['unit']);
-    images = List.from(json['images']).map((e) => Images.fromJson(e)).toList();
-    mainImage = json['main_image'] ?? "";
+    isFavorite = json['is_favorite'] ?? false;
+    unit = Unit.fromJson(json['unit']??{});
+    mainImage = json['main_image']??'';
     createdAt = json['created_at'] ?? "";
   }
+
+  ProductModel.fromMiniJson(Map<String, dynamic> json) {
+    id = json['id']??0;
+    title = json['title'] ?? '';
+    mainImage = json['image'] ?? "";
+    amount = json['amount'] ?? 0;
+    deliveryCost = json['delivery_cost'] ?? 0;
+    price = json['price'] ?? 0;
+  }
+
 }
 
 class Unit {
@@ -57,11 +65,3 @@ class Unit {
   }
 }
 
-class Images {
-  late final String name, url;
-
-  Images.fromJson(Map<String, dynamic> json) {
-    name = json['name']??'';
-    url = json['url']??'';
-  }
-}

@@ -1,16 +1,20 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/logic/cache_helper.dart';
 import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../views/home/view.dart';
+
 part 'events.dart';
 part 'model.dart';
 part 'states.dart';
 
 class LoginBloc extends Bloc<LoginEvents, LoginStates> {
-  LoginBloc() : super(LoginStates()) {
+  final DioHelper _dio;
+  LoginBloc(this._dio) : super(LoginStates()) {
     on<LoginEvent>(_login);
   }
 
@@ -21,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   Future<void> _login(LoginEvent event, Emitter<LoginStates> emit) async {
     if (formKey.currentState!.validate()) {
       emit(LoginLoadingState());
-      final response = await DioHelper().sendData(
+      final response = await _dio.sendData(
         "login",
         data: {
           "phone": phoneController.text,

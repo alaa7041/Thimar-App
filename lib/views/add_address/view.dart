@@ -1,11 +1,15 @@
 import 'dart:async';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import '../../core/design/app_bar.dart';
 import '../../core/logic/helper_methods.dart';
+import '../../generated/locale_keys.g.dart';
 
 class AddressView extends StatefulWidget {
   const AddressView({Key? key}) : super(key: key);
@@ -20,14 +24,16 @@ class _AddressViewState extends State<AddressView> {
   Set<Marker> markers = {
     const Marker(
       markerId: MarkerId("1"),
-      position: LatLng(31.0191987,31.3884559),
+      position: LatLng(31.0191987, 31.3884559),
     ),
   };
+
   @override
   void initState() {
     super.initState();
     _determinePosition();
   }
+
   String? myAddress;
 
   @override
@@ -36,7 +42,12 @@ class _AddressViewState extends State<AddressView> {
       child: Scaffold(
         body: Column(
           children: [
-            CustomAppBar(text: "إضافة عنوان", onPress: (){},),
+            CustomAppBar(
+              text: LocaleKeys.addAddress.tr(),
+              onPress: () {
+                Navigator.pop(context);
+              },
+            ),
             SizedBox(
               height: 450.h,
               child: GoogleMap(
@@ -56,31 +67,56 @@ class _AddressViewState extends State<AddressView> {
                   Circle(
                       circleId: const CircleId("1"),
                       radius: 10000,
-                      center: const LatLng(-122.084,37.4219983),
+                      center: const LatLng(-122.084, 37.4219983),
                       fillColor: Theme.of(context).primaryColor.withOpacity(.2),
                       strokeColor:
                           Theme.of(context).primaryColor.withOpacity(.3))
                 },
-                mapType: MapType.terrain,
+                mapType: MapType.normal,
                 initialCameraPosition: const CameraPosition(
-                  target: LatLng(-122.084,37.4219983),
+                  target: LatLng(31.0191987, 31.3884559),
                   zoom: 14,
                 ),
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
+
               ),
             ),
-            if(myAddress!=null)
-              Text(myAddress!),
-            SizedBox(height: 20.h,),
-            FloatingActionButton(
-              onPressed: () async {
-                goToLocation(
-                    location:const LatLng(-122.084,37.4219983)
-                );
-              },
-              child: const Icon(Icons.location_on_sharp),
+            if (myAddress != null) Text(myAddress!),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  const Expanded(
+                    child: Text("نوع العنوان",
+                        style: TextStyle(
+                          color: Color(0xff8B8B8B),
+                        )),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 37,
+                          child: FilledButton(
+                              onPressed: () {}, child: const Text("المنزل")),
+                        ),
+                        const Spacer(),
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: const Text("العمل"),
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'ادخل رقم الجوال',
+                ),
+              ),
             )
           ],
         ),
@@ -88,7 +124,7 @@ class _AddressViewState extends State<AddressView> {
     );
   }
 
-  Future<void> goToLocation({required LatLng location})async{
+  Future<void> goToLocation({required LatLng location}) async {
     final GoogleMapController controller = await _controller.future;
     await controller.animateCamera(
       CameraUpdate.newCameraPosition(
@@ -104,26 +140,28 @@ class _AddressViewState extends State<AddressView> {
         position: location,
       ),
     );
-    List<Placemark> placemarks = await placemarkFromCoordinates(location
-        .latitude,location.longitude);
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(location.latitude, location.longitude);
     var element = placemarks.first;
-      print(element.name);
-      print(element.country);
-      print(element.subLocality);
-      print(element.locality);
-      print(element.street);
-      print("*****************************");
-      myAddress = "${element.name} / ${element.country} / ${element.street}";
+    print(element.name);
+    print(element.country);
+    print(element.subLocality);
+    print(element.locality);
+    print(element.street);
+    print("*****************************");
+    myAddress = "${element.name} / ${element.country} / ${element.street}";
     setState(() {});
   }
 
-
+// goToLocation(
+  //     location:const LatLng(-122.084,37.4219983)
+  // );
   Future<Position> _determinePosition() async {
-    bool serviceEnabled =  await Geolocator.isLocationServiceEnabled();
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     LocationPermission permission;
 
     if (!serviceEnabled) {
-      showMessage('Location services are disabled.',type: MessageType.warning);
+      showMessage('Location services are disabled.', type: MessageType.warning);
       return Future.error('Location services are disabled.');
     }
 
@@ -131,7 +169,6 @@ class _AddressViewState extends State<AddressView> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-
         return Future.error('Location permissions are denied');
       }
     }
@@ -146,9 +183,8 @@ class _AddressViewState extends State<AddressView> {
     print("******************************************");
     print(myPosition.longitude);
     print(myPosition.latitude);
-    await goToLocation(location: LatLng(myPosition.latitude, myPosition
-        .longitude));
+    await goToLocation(
+        location: LatLng(myPosition.latitude, myPosition.longitude));
     return myPosition;
   }
 }
-

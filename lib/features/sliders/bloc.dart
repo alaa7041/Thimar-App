@@ -1,21 +1,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../core/logic/dio_helper.dart';
+
+part 'events.dart';
 part 'model.dart';
 part 'states.dart';
-part 'events.dart';
 
+class SliderBloc extends Bloc<SlidersEvents, SliderStates> {
+  final DioHelper _dio;
 
-class SliderBloc extends Bloc<SlidersEvents,SliderStates> {
-  SliderBloc() : super(SliderStates()){
-    on<GetSliderDataEvent> (_getSliderDataImages);
+  SliderBloc(this._dio) : super(SliderStates()) {
+    on<GetSliderDataEvent>(_getSliderDataImages);
   }
 
-
-
-  Future<void> _getSliderDataImages(GetSliderDataEvent event,Emitter<SliderStates> emit)
-  async {
+  Future<void> _getSliderDataImages(GetSliderDataEvent event, Emitter<SliderStates> emit) async {
     emit(SliderLoadingState());
-    final response = await DioHelper().getData("sliders");
+    final response = await _dio.getData("sliders");
     if (response.isSuccess) {
       final model = SliderData.fromJson(response.response!.data);
       emit(SliderSuccessState(list: model.list));

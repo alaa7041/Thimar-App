@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../views/auth/confirm_code/view.dart';
 import '../../get_cities/bloc.dart';
-part 'states.dart';
+
 part 'events.dart';
+part 'states.dart';
 
 class RegisterBloc extends Bloc<RegisterEvents, RegisterStates> {
 
@@ -16,7 +18,8 @@ class RegisterBloc extends Bloc<RegisterEvents, RegisterStates> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  RegisterBloc():super(RegisterStates()){
+  final DioHelper _dio;
+  RegisterBloc(this._dio):super(RegisterStates()){
     on<RegisterEvent> (_register);
   }
 
@@ -24,7 +27,7 @@ class RegisterBloc extends Bloc<RegisterEvents, RegisterStates> {
   async {
     if (formKey.currentState!.validate()) {
     }
-    final response = await DioHelper().sendData("client_register", data: {
+    final response = await _dio.sendData("client_register", data: {
       "fullname": fullNameController.text,
       "password": passwordController.text,
       "password_confirmation": confirmPasswordController.text,

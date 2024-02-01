@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/logic/dio_helper.dart';
 import '../../../core/logic/helper_methods.dart';
 import '../../../views/home/view.dart';
-part 'states.dart';
+
 part 'events.dart';
+part 'states.dart';
 
 class ResetPasswordBloc extends Bloc<ResetPasswordEvents, ResetPasswordStates> {
-  ResetPasswordBloc() : super(ResetPasswordStates()) {
+  final DioHelper _dio;
+
+  ResetPasswordBloc(this._dio) : super(ResetPasswordStates()) {
     on<ResetPasswordEvent>(_reset);
   }
 
@@ -21,7 +25,7 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvents, ResetPasswordStates> {
 
     if (formKey.currentState!.validate()) {
       emit(ResetPasswordLoadingState());
-      final response = await DioHelper().sendData("reset_password", data: {
+      final response = await _dio.sendData("reset_password", data: {
         "code": codeController.text,
         "phone": phoneController.text,
         "password": confirmPasswordController.text,
